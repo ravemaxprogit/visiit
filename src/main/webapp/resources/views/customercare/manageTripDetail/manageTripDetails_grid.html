@@ -1,0 +1,66 @@
+<div class="page-contents"  acl-module resource-id="Payment Approval">
+<form name="departmentGrid" action="#" role="form" id="dprtForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="depId">Trip</label>&nbsp;Detail
+			</h6>
+		</div>
+		<div class="row">
+			<div ng-class="{'sucess_message': messagedata.success, 'sucess_error': !messagedata.success}">{{messagedata.message}}</div>				
+		 </div>
+		<div class="panel-body">
+		<div class="form-actions text-right">
+			 <input ng-click="addNewTrip();" ng-disabled="isProcessing" type="button" value="Add" class="btn btn-danger">
+	  	</div>
+			<div class="row ng-scope">
+				<div class="col col-sm-12 pre-scrollable" >
+				<server-side-grid service="getTripDetail" pagination-style="10,50,100" default-filter="paymentStatus=Success" default-sort="">
+					<table ng-table="tableParams" show-filter="true" class="table table-striped table-bordered">
+							<tr ng-repeat="orderdetails in data.listData" data-ng-if="data.Status =='Ok'">
+							<td header-class="tripDateClass" data-title="'Trip Code'" sortable="'tripcode'" filter="{'tripcode': 'text' }"><a ng-click="getTripDetailBycode(orderdetails.tripcode);">{{orderdetails.tripcode}}</a></td>
+							<td data-title="'Trip Date'" sortable="'travelDate'" filter="{'travelDate': 'traveldate' }">{{orderdetails.travelDate  | date:'dd/MM/yyyy'}}</td>
+							<td data-title="'Payment Date'" sortable="'paymentDate'" filter="{'paymentDate': 'paymentdate' }">{{orderdetails.paymentDate  | date:'dd/MM/yyyy'}}</td>
+							<td header-class="packageNameClass" data-title="'Package Name'" sortable="'packName'"	filter="{'packName': 'text' }">{{orderdetails.packName}}</td>
+							<td header-class="contactMailClass" data-title="'Contact Email'" sortable="'email'"	filter="{'email': 'text' }">{{orderdetails.email}}</td>
+							<!-- <td data-title="'Payment Status'" sortable="'paymentStatus'" filter="{'paymentStatus': 'select' }" filter-data="paymentStatusTypes($rootScope)">{{orderdetails.paymentStatus}}</td> -->
+							<td  header-class="paymentStatusClass" data-title="'Payment Status'" sortable="'paymentStatus'" filter="{'paymentStatus': 'select' }" filter-data="paymentStatusTypes($rootScope)">{{orderdetails.paymentStatus}}</td>
+							<td  header-class="appStatusClass" data-title="'Approval Status'" sortable="'approvedStatus'" filter="{'approvedStatus': 'select' }" filter-data="tripStatusTypes($rootScope)">{{orderdetails.approvedStatus}}</td>
+							<td  header-class="vouchersClass" data-title="'Voucher'" sortable="'voucher'" filter="{'voucher': 'select' }" filter-data="voucherStatusTypes($rootScope)"><a ng-show="orderdetails.voucher=='Not Available'" ng-click="addTripVoucher(orderdetails.tripcode);">{{orderdetails.voucher}}</a><a ng-show="orderdetails.voucher=='Available'" ng-click="editTripVoucher(orderdetails.tripcode);">{{orderdetails.voucher}}</a></td>
+							<!-- <td  header-class="vouchersClass" data-title="'Vouchers'" sortable="'Vouchers'" filter="{'voucher': 'text' }"><a ng-show="orderdetails.voucher=='NOT AVAILABLE'" ng-click="addTripVoucher(orderdetails.tripcode);">{{orderdetails.voucher}}</a><a ng-show="orderdetails.voucher=='AVAILABLE'" ng-click="editTripVoucher(orderdetails.tripcode);">{{orderdetails.voucher}}</a></td> -->
+						</tr>
+						<tr data-ng-if="data.listData.length ==0">
+							<td  colspan="5">No data found.</td>
+						</tr>
+						</tbody>
+					</table>
+					
+    
+					<script type="text/ng-template" id="ng-table/filters/traveldate.html">
+						<div style="float:left;width:270px;">
+							<input type="text"  ng-model="startDate" style="float:left;width:105px;" name="startdate" custom-datepicker placeholder="From Date"  date-options='{"dateFormat":"dd/mm/yy"}'>  
+							<input type="text"  ng-model="endDate" style="float:left;width:105px;" name="endDate" custom-datepicker placeholder="To Date" date-options='{"dateFormat":"dd/mm/yy"}'>
+							<input type="button" style="float:left;border:1px solid #ccc;" class="btn" value="GO" ng-click="serversidegridDateFilter('travelDate', startDate, endDate);">
+						</div>
+					</script>
+					<script type="text/ng-template" id="ng-table/filters/paymentdate.html">
+						<div style="float:left;width:270px;">
+							<input type="text" style="float:left;width:105px;" ng-model="startDate" name="startdate" custom-datepicker placeholder="From Date" date-options='{"dateFormat":"dd/mm/yy"}' >  
+							<input type="text" style="float:left;width:105px;" ng-model="endDate" name="endDate" custom-datepicker placeholder="To Date" date-options='{"dateFormat":"dd/mm/yy"}' >
+							<input type="button" style="float:left;border:1px solid #ccc;" class="btn" value="GO" ng-click="serversidegridDateFilter('paymentDate', startDate, endDate);">
+						</div>
+					</script>
+					<script type="text/ng-template" id="custom-datepicker.html">
+    					<div class="enhanced-datepicker">
+        					<div class="proxied-field-wrap">
+            					<input type="text" class="form-control margin-zero" ng-model="ngModel" ui-date-format="dd/mm/yy" ui-date="dateOptions" placeholder="{{placeholder}}" />
+        					</div>
+           				</div>
+					</script>
+				</server-side-grid>
+			</div>
+		</div>  
+		</div>
+	</div>
+</form>
+</div>

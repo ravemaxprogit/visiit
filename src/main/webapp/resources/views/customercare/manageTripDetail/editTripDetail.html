@@ -1,0 +1,198 @@
+<div class="page-contents">
+	<form name="saveEnquiry" role="form" method="POST" novalidate>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>TRIP DETAIL</h6></div>
+            <div class="row">
+				<div data-ng-show="message.error" class="sucess_error">{{editTrip.message}}</div>
+			</div>
+            <div class="panel-body">
+            <div class="form-group">                          
+            <div class="row">
+                <div class="col-md-3  subtitle">Trip Code:
+                   <span class="form-control" ng-model="manageTrip.tripDetail.tripcode">{{manageTrip.tripDetail.tripcode}}</span>
+                </div> 
+             	<div class="col-md-3  subtitle">Trip Date:
+				    <span class="form-control" ng-model="manageTrip.tripDetail.travelDate">{{manageTrip.tripDetail.travelDate}}</span>
+                </div> 
+                <div class="col-md-4  subtitle">Package Name:
+				     <span class="form-control" ng-model="manageTrip.tripDetail.packName">{{manageTrip.tripDetail.packName}} ({{manageTrip.tripDetail.nights}} Nights / {{manageTrip.tripDetail.days}} Days )</span>
+                </div> 
+             </div>
+		  </div>
+		</div>
+	  </div>
+  	<div class="panel panel-default">
+         <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>PASSENGER DETAILS</h6></div>
+           <div class="panel-body">
+            <div class="row">
+            	<div class="col-md-10">
+			   <div class="subtitle">Passenger List:</div>
+			   <div class="scrollableContainer">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th class="">Name</th>
+						<th class="">Age</th>
+					</tr>
+					</thead>
+					<tbody id="tb_body">
+						<tr data-ng-show="manageTrip.Status=='Ok'" id="results"
+							data-ng-repeat="deparment_data in manageTrip.personDetail">
+							<td>{{deparment_data.firstname}} {{deparment_data.lastname}}</td>
+							<td>{{deparment_data.age}}</td>
+						</tr>
+					</tbody>
+				</table>
+			  </div>
+			</div>
+		  </div>
+		 </div>
+		 </div>
+		 
+		 
+	   <div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Contact Details </h6></div>
+            <div class="panel-body">
+            <div class="form-group">                          
+	            <div class="row">
+				<div class="col-md-12  form-group">
+				<div class="subtitle"></div>
+	                <div class="col-md-2  subtitle">First Name:</div>
+					<div class="col-md-3">
+					 <span class="form-control" ng-model="manageTrip.tripDetail.firstname">{{manageTrip.tripDetail.firstname}}</span>
+					</div>
+	                <div class="col-md-2  subtitle">Last Name:</div>
+					<div class="col-md-3">
+	                 <span class="form-control" ng-model="manageTrip.tripDetail.lastname">{{manageTrip.tripDetail.lastname}}</span>
+	                </div> 
+	                
+	            </div> 
+	            <div class="col-md-12">
+	                <div class="col-md-2  subtitle">Phone:</div>
+					<div class="col-md-3">		
+					<span class="form-control" ng-model="manageTrip.tripDetail.phone">{{manageTrip.tripDetail.phone}}</span>
+					</div>
+	                <div class="col-md-2  subtitle">E-Mail:</div>
+					<div class="col-md-3">
+	                   <span class="form-control" ng-model="manageTrip.tripDetail.email">{{manageTrip.tripDetail.email}}</span>
+	                </div> 
+	                
+	            </div>
+	           </div>
+	          </div>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Billing Address </h6></div>
+            <div class="panel-body">
+            <div class="form-group">                          
+	            <div class="row">
+				<div class="col-md-5">
+				  <div class="row form-group">
+	                <div class="col-md-5  subtitle">Address:</div>
+					<div class="col-md-7">
+					<span class="form-control" style="height: 100px; width: 250px;">{{manageTrip.tripDetail.address}}</span>
+					</div>
+				   </div>
+	             </div> 
+	            <div class="col-md-5">
+	              <div class="row form-group">
+	                <div class="col-md-4  subtitle">City:</div>
+					<div class="col-md-7">
+					 <span class="form-control" ng-model="manageTrip.tripDetail.email">{{manageTrip.tripDetail.city}}</span>
+					</div>
+				   </div>
+					<div class="row form-group">
+	                <div class="col-md-4  subtitle">State:</div>
+					<div class="col-md-7">
+					 <span class="form-control" ng-model="manageTrip.tripDetail.email">{{manageTrip.tripDetail.state}}</span>
+	                </div>
+	                </div> 
+	            </div>
+	           </div>
+	           <div class="row">
+		           
+		            <div class="col-md-5">
+	                    <div class="row form-group">
+		                <div class="col-md-5  subtitle">Postal Code:</div>
+						<div class="col-md-7">
+						 <span class="form-control" ng-model="manageTrip.tripDetail.email">{{manageTrip.tripDetail.postelCode}}</span>
+						</div>
+						</div>
+						 </div>
+						 <div class="col-md-5">
+	              		 <div class="row form-group">
+		                <div class="col-md-4  subtitle">Country:</div>
+						<div class="col-md-7">
+						 <span class="form-control" ng-model="manageTrip.tripDetail.email">{{manageTrip.tripDetail.country}}</span>
+		                </div>
+		                </div> 
+		            </div>
+		  </div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>APPROVAL/PAYMENT DETAIL </h6></div>
+            <div class="panel-body">
+            <div class="form-group">    
+	            <div class="row form-group">
+	             <div ng-show="!showPaymentDD" >
+	                <div class="col-md-2  subtitle">Payment Date:</div>
+					<div class="col-md-3">
+					<span class="form-control" ng-model="manageTrip.tripDetail.tripDetail.paymentDate">{{manageTrip.tripDetail.paymentDate}}</span>
+					</div>
+				
+	                <div class="col-md-2  subtitle">Payment Amount:</div>
+					<div class="col-md-3">
+	                   <span class="form-control" ng-model="manageTrip.tripDetail.tripDetail.finalAmount">{{manageTrip.tripDetail.finalAmount}}</span>
+	                </div> 
+	            </div>
+	             <div ng-show="showPaymentDD" >
+	                <div class="col-md-2  subtitle">Payment Amount:</div>
+					<div class="col-md-3">
+	                   <input type="text" name="price" ng-model="manageTrip.tripDetail.finalAmount" placeholder="Payment Amount" class="form-control" data-validator="required,validateNumber" maxlength="10" data-required-error-message="Enter the Amount">
+	                </div> 
+	             </div>   
+	            </div>
+	           
+	            <div class="row"  >
+            	 <div class="col-md-3  subtitle" ng-show="showPaymentDD" >Payment Status:
+                  <select data-ng-model="manageTrip.tripDetail.paymentStatus" class="form-control"  data-validator="required"  data-valid-method="watch" data-required-error-message="Select Payment Status" >			
+						<option  data-ng-selected="manageTrip.tripDetail.paymentStatus == trp_pmtsts.title" data-ng-repeat="trp_pmtsts in paymentList" value="{{trp_pmtsts.title}}">{{trp_pmtsts.title}}</option>
+					</select>
+	             </div>
+	             <div class="col-md-3  subtitle" ng-show="!showPaymentDD" >Payment Status:
+                  <span class="form-control" ng-model="manageTrip.tripDetail.tripcode">{{manageTrip.tripDetail.paymentStatus}}</span>
+	             </div>
+                <div class="col-md-7 "><span class="subtitle" >Comments:</span>
+						<textarea name="payementCommands" ng-disabled="showPaymentDD" placeholder="Comments" class="form-control" maxlength="1000" ng-model="manageTrip.tripDetail.payementCommands" data-validator="required" data-required-error-message="Enter the Payment Comment"></textarea>
+				</div>
+				</div>
+	            <div class="row">
+            	 <div class="col-md-3  subtitle">Approval Status:
+                  <select data-ng-model="manageTrip.tripDetail.approvedStatus" class="form-control"  data-validator="required"  data-valid-method="watch" data-required-error-message="Select Approval Status" >	
+                  		<option  data-ng-selected="manageTrip.tripDetail.approvedStatus == trp_apsts.title" data-ng-repeat="trp_apsts in tripApprovalList" value="{{trp_apsts.title}}">{{trp_apsts.title}}</option>
+				  </select>
+	             </div>
+                <div class="col-md-7  subtitle">Comments:
+						<textarea name="statusCommands" placeholder="Comments" class="form-control" maxlength="1000" ng-model="manageTrip.tripDetail.statusCommands"></textarea>
+				</div>
+				</div>
+			
+		</div>
+		</div>
+		</div>
+		
+		
+		
+	  
+	  <div class="form-actions text-right">
+			<input type="submit" data-validation-submit="saveEnquiry" ng-click="updateTripDetail()" id="submit" name="save" value="Save" class="btn btn-danger">
+			<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+		</div>
+	</form>
+	<br/>
+</div>
+

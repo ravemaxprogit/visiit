@@ -1,0 +1,112 @@
+<form name="stateGrid" action="#" role="form" id="cntForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">State</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{stateResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{stateResponse.message}}</div>
+		<div class="panel-body">
+		<div class="form-group">
+				<div class="row">
+					<div class="col-md-2">Code</div>
+					<div class="col-md-4">
+						<input type="text" id="code" name="code" maxlength="3" minlength="2" data-validator="required,validateAlpha" data-valid-method="watch" data-required-error-message="Enter the code"
+										data-ng-model="state.stateCode" placeholder="- Add Code-" ng-focus="hideeerormsg();"
+										class="form-control ">										
+										<input type="hidden" id="id" name="stateId" data-ng-model="state.stateId" />
+						<span style="color:hsl(0, 100%, 50%);" ng-show="stateGrid.code.$error.minlength">Enter Atleast 2 character</span>							
+					</div>
+					<div class="col-md-2">Name</div>
+					<div class="col-md-4">
+						<input type="text" id="name" name="name"
+									    data-validator="required,validateAlphaSpace" data-valid-method="watch" data-required-error-message="Enter the name"
+										placeholder="- Add Name-" data-ng-model="state.stateName" maxlength="50" ng-focus="hideeerormsg();"
+										class="form-control">										
+						
+					</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2">Description</div>
+						<div class="col-md-4">
+							<input type="text" id="desc" name="desc"
+										placeholder="- Add Description-" ng-focus="hideeerormsg();"
+										data-ng-model="state.stateDescription" maxlength="150" 
+										class="form-control" data-validator="required" data-required-error-message="Enter the Description">
+						</div>
+						<div class="col-md-6">Active</div>				
+
+							<div class="col-md-3">
+							<span ng-click="state.stateIsactiveTrue=!state.stateIsactiveTrue" ng-hide="!state.stateIsactiveTrue">
+								<a href=""><i style="color: #21b384;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span> <span ng-click="state.stateIsactiveTrue=!state.stateIsactiveTrue" ng-hide="state.stateIsactiveTrue">
+								<a href=""><i style="color: #808080;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-2">							
+								<input type="button" data-validation-submit="stateGrid" data-ng-click="saveState(stateGrid)" value="Add" class="btn btn-primary"
+										id="saveBtn">
+						</div>
+						<div class="col-md-8"></div>
+					</div>
+				</div>
+			<div class="block clsGrid">
+				<table class="table table-bordered" id="paneltbl">
+					<thead>
+						<tr>
+							<th class="">Code</th>
+							<th class="">Name</th>
+							<th class="">Description</th>
+							<th class="">Active</th>
+							<th style="width: 55px;">Action</th>
+						</tr>
+					</thead>
+					<tbody id="tb_body">						
+						<tr data-ng-show="master.states.Status=='Ok'" id="results"
+							data-ng-repeat="state_data in master.states.states">
+							<td>{{state_data.stateCode}}</td>
+							<td>{{state_data.stateName}}</td>
+							<td>{{state_data.stateDescription}}</td>
+							<td>{{state_data.activeModel}}</td>
+							<td style="width: 55px;">								
+								<p>										
+										<a
+											data-ng-click="editState(state_data.stateId,state_data.stateCode,state_data.stateName,state_data.stateDescription,state_data.stateIsactive)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp; <a data-ng-click="deleteState(state_data.stateId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+<script>
+	$(document).ready(function() {
+		var statetog = 0;
+		$(".stateisActive").on('click', function() {
+			if (statetog % 2 == 0) {
+				$(".stateisActive").prop('checked', true);
+				$(".stateisActive").val('Y');
+			} else {
+				$(".stateisActive").prop('checked', false);
+				$(".stateisActive").val('N');
+			}
+			statetog++;
+		});
+	});
+</script>

@@ -1,0 +1,67 @@
+<div class="page-contents" acl-module resource-id="Users">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> Users Grid
+			</h6>
+		</div>
+		<div class="panel-body">	
+			<div class="row">
+					<div class="col-md-8">
+						<input type="text" name="vendor" placeholder="- Search User -"	class="form-control" ng-model="u_search" required>
+					</div>
+				</div>
+			<div class="row">
+				<div data-ng-show="message.success" class="sucess_message">{{userResponse.message}}</div>
+				<div data-ng-show="message.error" class="sucess_error">{{userResponse.message}}</div>
+			</div>
+			<div class="block">
+				<div class="form-actions text-right">
+								<input id="hidebtn" ng-disabled="isProcessing" ng-click="userAdd();" type="button" value="Add"
+									class="btn btn-danger">
+				</div>
+				<div class="">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+							    <th class="">Code</th>
+								<th class="">First Name</th>
+								<th class="">Last Name</th>
+								<th class="">User Id</th>
+								<th class="">Status</th>
+								<th class="">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-show="usersGrid.Status=='Ok'"
+								data-ng-init="filter_len = 1" 
+								data-ng-repeat="user_data in usersGrid.userList | filter:user_search">
+								<td>{{user_data.userCode}}</td>
+								<td>{{user_data.userFirstName}}</td>
+								<td>{{user_data.userLastName}}</td>
+								<td>{{user_data.userId}}</td>
+								<td>{{user_data.userIsActive | true_false}}</td>
+								<td>
+									<p>
+										 <a
+											ng-click="userAdd(user_data.userSeqId);"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>&nbsp;&nbsp;&nbsp;
+											<a ng-click="deleteUser(user_data.userSeqId)"><i
+											style="color: red;" class="icon-close"></i></a>
+										
+									</p>
+								</td>
+							</tr>
+							<tr data-ng-show="vendorList.Status=='Error'">
+								<td colspan="6">{{usersList.message}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script></script>

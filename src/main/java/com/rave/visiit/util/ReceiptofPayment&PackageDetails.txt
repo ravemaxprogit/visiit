@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body style="background:#ccc;">
+    <div style="width: 800px; min-height:250px; padding: 0px 30px 30px 30px; border:0px #5e1f5f solid; margin: auto; background:#fff;">
+        <table style="width:100%;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="height:115px; border-bottom:2px #ccc solid;">
+                    <table style="width:100%;" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" valign="middle" style="width:30%;">
+                                <img src="$IMAGECONTEXT$images/mail/logo1.png" />
+                            </td>
+                            <td align="right" valign="bottom" style="width:70%; height:115px;">
+                                <div><a style="font-size:12px; float:right;  color:#000;" href="">View it in browser</a></div> <br />
+                                <div>
+                                    <ul style="list-style:none; float:right; margin:0px; padding:0px; margin-right:-4px; ">
+                                        <li style="float:left; margin-right:5px;"><a href=""><img src="$IMAGECONTEXT$images/mail/1.jpg" /></a></li>
+                                        <li style="float:left; margin-right:5px;"><a href=""><img src="$IMAGECONTEXT$images/mail/2.jpg" /></a></li>
+                                        <li style="float:left; margin-right:5px;"><a href=""><img src="$IMAGECONTEXT$images/mail/3.jpg" /></a></li>
+                                        <li style="float:left; margin-right:5px;"><a href=""><img src="$IMAGECONTEXT$images/mail/4.jpg" /></a></li>
+                                        <li style="float:left; margin-right:5px;"><a href=""><img src="$IMAGECONTEXT$images/mail/5.jpg" /></a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!--Content Will Be Here-->
+
+            <tr>
+                <td style="min-height:100px;">
+                    <h3 style="font-size:18px;">HI  $FIRSTNAME$ $LASTNAME$ !</h3>
+                    <p style="font-size:14px;">
+                    	
+                        Your payment successfully completed.<BR><BR>
+                        Total amount Received :$TOTALAMOUNT$ /-<BR><BR>
+                        your trip Code is $TRIPCODE$<BR><BR>
+                        your traveling date :$TRAVELDATE$<BR><BR>
+                        $TRIPDETAILS$<br>
+                                                
+                        Happy Journey!
+                    </p>
+
+                    <p style="font-size:14px; font-weight:bold;">
+                        Regarding <br />
+                        <span style="color:#5e1f5f; font-size:30px;">Visiit Tavels</span>
+                    </p>
+
+                </td>
+            </tr>
+
+            <!--Content Will End Here-->
+
+            <tr>
+                <td style="min-height: 100px; border-bottom: 2px #ccc solid; padding-bottom:15px;">
+                    <table align="left" style="margin-left:-3px;">
+                        <tr>
+                            <td valign="bottom" style="">
+                                <img src="$IMAGECONTEXT$images/mail/banner-1.jpg" />
+                            </td>
+                            <td valign="bottom">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <p style="font-size:12px; color:#2a2a2a; text-align:center;">You are receiving this email because  $EMAIL$ is signed up to receive emails from Groupon. If you prefer not to receive future Groupon emails of this type, you can always unsubscribe with one click. If you'd like to manage your other subscriptions, click here.</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center">
+                    <a style="font-size:13px; color:#808080; margin-left:15px;" href="#">Home<span style="margin-left:15px;">|</span></a><a style="font-size:13px; color:#808080; margin-left:15px;" href="#">About us<span style="margin-left:15px;">|</span></a><a style="font-size:13px; color:#808080; margin-left:15px;" href="#">Jobs<span style="margin-left:15px;">|</span></a>
+                    <a style="font-size:13px; color:#808080; margin-left:15px;" href="#">FAQ's<span style="margin-left:15px;">|</span></a> <a style="font-size:13px; color:#808080; margin-left:15px;" href="#">Business with us<span style="margin-left:15px;">|</span></a>
+                    <a style="font-size:13px; color:#808080; margin-left:15px;" href="#">Contact us</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <!--<table>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>-->
+                    <div style="margin: auto; width: 175px; background: #2e2e2e; height:70px; margin-top:15px; padding-top:2px;">
+                        <p style="text-align:center; color:#fff; font-size:12px; line-height:0px;">Spread the love</p>
+                        <table align="center">
+                            <tr>
+                                <td style="width:35px; height:35px;">
+                                    <a href="https://www.facebook.com/pages/Visiit/759698570771250"><img src="$IMAGECONTEXT$images/mail/f.jpg" /></a>
+                                </td>
+                                <td style="width:35px; height:35px;">
+                                    <a href="https://twitter.com/VisiitHoliday"><img src="$IMAGECONTEXT$images/mail/t.jpg" /></a>
+                                </td>
+                                <td style="width:35px; height:35px;">
+                                    <a href="https://plus.google.com/u/0/107610073833609245611/posts"><img src="$IMAGECONTEXT$images/mail/g.jpg" /></a>
+                                </td>
+                                <td style="width:35px; height:35px;">
+                                    <a href="https://www.pinterest.com/visiit/"><img src="$IMAGECONTEXT$images/mail/p.jpg" /></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

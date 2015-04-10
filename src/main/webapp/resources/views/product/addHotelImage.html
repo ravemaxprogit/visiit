@@ -1,0 +1,50 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h6 class="panel-title">
+			<i class="icon-pencil3"></i>Upload Hotel Image -
+			{{hotel_details.hdName}}
+		</h6>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+				<!-- <div ng-show="imageDataURI" class="cropArea"
+								style="width: 450px; height: 350px;">
+								<img-crop image="imageDataURI" result-image="imgfile"
+									change-on-fly="changeOnFly" area-type="square"
+									area-min-size="cropperWidth" result-image-format="fileType"
+									result-image-size="200"></img-crop>								
+									
+				</div> -->
+					<img data-ng-show="hideImageSaveBtn" ng-src="{{imgfile}}"
+						 alt="Hotel Image" width="{{cropperWidth}}" height="{{cropperHeight}}">						 
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-10">							
+								<button type="file" ng-file-select ng-model="myFiles"
+								ng-file-change="fileSelected($files, $event)" ng-multiple="true"
+								accept="image/*,*.pdf" resetOnClick="true"
+								class="btn btn-primary">Upload</button>					
+								<!-- <button type="file" ng-file-select ng-model="myFiles"
+								ng-file-change="fileSelected($event,'packageHotel')" ng-multiple="true"
+								accept="image/*,*.pdf" resetOnClick="true"
+								class="btn btn-primary">Upload</button> -->		
+						</div>
+					</div>
+					<br>
+					<div class="form-actions text-left">
+						<input data-ng-show="hideImageSaveBtn" type="submit" value="Save"
+							data-ng-click="saveHotelImage(hotel_details.hdSeqId)"
+							class="btn btn-danger"> <input type="reset"
+							value="Cancel" ng-click="cancel();" class="btn btn-default">
+					</div>
+					<div class="form-actions text-left">
+					<span class="errorSpan" ng-show="fileError">{{fileError}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

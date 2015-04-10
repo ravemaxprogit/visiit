@@ -1,0 +1,8 @@
+
+<input type="text" ng-model="model" placeholder="{{prompt}}" ng-keypress="selected=false" ng-down="goDown(filteredItems)" ng-up="goUp(filteredItems)" ng-enter="insert(filteredItems)" class="form-control margin-zero"/><br/> 
+<div class="items" ng-hide="!model.length || selected" >
+	<div class="item" ng-repeat="item in filteredItems =(items | filter:model) track by $index" ng-click="handleSelection(item[title],item)" style="cursor:pointer" ng-class="{active:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+		<p class="title">{{item[title]}}</p>
+		<p class="subtitle">{{item[subtitle]}}</p>
+	</div>
+</div>

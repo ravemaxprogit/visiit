@@ -1,0 +1,37 @@
+<div acl-module resource-id="Enquiry Support">
+	<form name="departmentGrid" action="#" role="form" id="dprtForm" method="post">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i> <label id="depId">Enquiry</label>&nbsp;Grid
+				</h6>
+			</div>
+			<div class="row">
+				<div ng-class="{'sucess_message': data.success, 'sucess_error': !data.success}">{{data.successmessage}}</div>				
+			</div>
+			
+			<div class="panel-body">
+				<div class="row ng-scope">
+					<div class="col col-sm-12">
+					<server-side-grid service="getCustomerEnquiry"	operation="contractResult" pagination-style="10,50,100">
+						<table ng-table="tableParams" show-filter="true" class="table table-striped table-bordered">
+							<tr ng-repeat="enquiry in data.listData">
+								<td data-title="'Enquiry Code'"  filter="{ 'enqCode': 'text' }"><a ng-click="enquiryView(enquiry.enqId);">{{enquiry.enqCode}}</a></td>
+								<td data-title="'Customer Name'" filter="{ 'enqCustomerName': 'text' }">{{enquiry.enqCustomerName}}</td>
+							    <td data-title="'Subject'"    filter="{ 'enqSubject': 'text' }">{{enquiry.enqSubject}}</td>
+								<td data-title="'Message'"    filter="{ 'enqMessage': 'text' }">{{enquiry.enqMessage}}</td>
+								<td data-title="'Status'"     filter="{ 'enqStatus': 'select' }" filter-data="statusTypes($rootScope)">{{enquiry.enqStatus}}</td>
+								<td><p><a ng-hide="enquiry.enqStatus=='Closed'" ng-click="enquiryEdit(enquiry.enqId);"><i style="color: #808080;" class="icon-pencil2"></i></a></p>
+							</tr>
+							<tr data-ng-if="data.listData.length ==0">
+								<td  colspan="5">No data found.</td>
+							</tr>
+							</tbody>
+						</table>
+					</server-side-grid>
+				</div>
+			</div>  
+			</div>
+		</div>
+	</form>
+</div>

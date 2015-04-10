@@ -1,0 +1,79 @@
+<div class="page-contents"  acl-module resource-id="Package Category">
+
+	<form action="#" role="form">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i> Package Category Grid
+				</h6>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<input type="text" name="pc_Search"
+								placeholder="- Choose Category -" class="form-control"
+								ng-model="pc_search" required>
+					</div>
+					<!-- <div class="col-md-4">
+						<a href="" btn btn-danger></a>&nbsp;&nbsp;|&nbsp;&nbsp; <a href=""
+							btn btn-danger><i class="fa fa-refresh"></i></a>
+					</div>-->
+				</div>
+				<br>
+				<div class="form-actions text-right">
+					<input ng-click="addPackageCategory();" ng-disabled="isProcessing" type="button" value="Add"
+						class="btn btn-danger">
+				</div>
+				<div data-ng-show="message.success" class="sucess_message">{{packageCategoryResponse.message}}</div>
+				<div data-ng-show="message.error" class="sucess_error">{{packageCategoryResponse.message}}</div>
+				<div class="block">
+					<div class="">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="">Sequence Number</th>
+									<th class="">Category Name</th>
+									<th class="">Active</th>
+									<th class="">Category Image</th>
+									<th class="">Icon Image</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="category in categories | filter:categorySearch">
+											<td>{{category.seqId}}</td>
+											<td>{{category.catTitle}}</td>
+											<td>
+												{{category.activeModel}}
+											</td>
+											<td style="cursor: pointer;" data-ng-show="!category.imageUrl" data-ng-click="addPackageCategoryImage(category)"><img ng-src="resources/images/no-imag.png" width="50" alt="no-image" /></td>
+											<td style="cursor: pointer;" data-ng-show="category.imageUrl" data-ng-click="addPackageCategoryImage(category)"><img ng-src="{{imagePath+mySplit(category.imageUrl,0)}}" width="50" alt="{{hotel_data.hdName}}" /></td>
+											<td style="cursor: pointer;" data-ng-show="!category.iconUrl" data-ng-click="addPackageCategoryIconImage(category)"><img ng-src="resources/images/no-imag.png" width="50" alt="no-image" /></td>
+											<td style="cursor: pointer;" data-ng-show="category.iconUrl" data-ng-click="addPackageCategoryIconImage(category)"><img ng-src="{{imagePath+mySplit(category.iconUrl,0)}}" width="50" alt="{{hotel_data.hdName}}" /></td>
+											<td>
+												<p>
+													
+										<a
+											ng-click="addPackageCategory(category);"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp; <a ng-click="deletePackageCategory(category.catId)"><i
+											style="color: red;" class="icon-close"></i></a>
+												</p>
+											</td>
+										</tr>
+										<tr data-ng-show="categories.Status=='Error'">
+											<td colspan="5">{{categories.message}}</td>
+										</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</form>
+	
+	
+        
+</div>

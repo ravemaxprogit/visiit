@@ -1,0 +1,155 @@
+<style>
+
+        * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [ng-drag] {
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        [ng-drag] {
+            width: 100px;
+            height: 90px;
+            background: rgba(255, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding-top: 20px;
+            display: block;
+            cursor: move;
+        }
+
+        [ng-drag].drag-over {
+            border: solid 1px red;
+        }
+
+        [ng-drag].dragging {
+            opacity: 0.5;
+        }
+
+        [ng-drop] {
+            background: rgba(0, 0, 0, 0.25);
+            text-align: center;
+            display: block;
+            position: relative;
+            padding: 10px;
+            width: 131px;
+            height: 115px;
+            float: left;
+        }
+
+        [ng-drop].drag-enter {
+            border: solid 5px red;
+        }
+
+        [ng-drop] span.title {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 20px;
+            margin-left: -100px;
+            margin-top: -10px;
+        }
+
+        [ng-drop] div {
+            position: relative;
+            z-index: 2;
+        }
+
+    </style>
+    <div class="page-contents" ng-controller="categoryController">
+        
+        <!-- Breadcrumbs line
+            <br/>
+            <div class="breadcrumb-line">
+                <ul class="breadcrumb">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ul>
+            </div>
+            <!-- /breadcrumbs line -->
+            <div   class="panel panel-default">
+                  <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>PACKAGE CATEGORY</h6></div>
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <div class="col-md-12">
+                             <div class="row">
+                                 <div class="col-md-4  subtitle"> Name:</div>
+                                 <div class="col-md-6">
+                                    <input type="text" placeholder="category name" class="form-control" ng-model="catName" required>
+                                 </div>
+                             </div><br>
+                             <div class="row">
+                                 <div class="col-md-4  subtitle"> Active:</div>
+                                 <div class="col-md-2">
+                                       <span ng-click="isCategory=!isCategory" ng-hide="!isCategory">
+                                            <a href=""><i style="color:#808080;" class="fa fa-check-square rect-check"></i></a>
+                                       </span>
+                                       <span ng-click="isCategory=!isCategory" ng-hide="isCategory">
+                                            <a href=""><i style="color:#21b384;" class="fa fa-check-square rect-check"></i></a>
+                                       </span>
+                                 </div>
+                                 <div class="form-actions col-md-4">
+                                    <input type="button" ng-click="save()" value="Save" class="btn btn-danger">
+                                 </div>
+                             </div><br><br>
+                             <div ng-app="content">
+                             <div class="row" >
+                                  <div class="panel-heading block col-md-8"><h6 class="panel-title"><i class="fa fa-image"></i>Upload Image&nbsp;&nbsp;<span>{{catTit}}</span></h6></div>
+                             </div>
+                             <div class="row">
+                                <div class="col-md-6">
+                                   <img ng-src="{{iconImage}}" class="img-responsive" alt="Category Image" width="300" height="200">
+                                </div>
+                                 <div class="col-md-6">
+                                      <div class="row">
+                                      <div class="col-md-10">
+                                         <button type="file" ng-file-select ng-model="categoryIcon" ng-file-change="fileIconSelected($files, $event)" ng-multiple="true" accept="image/*,*.pdf" resetOnClick="true" class="btn btn-primary">Upload</button>
+                                      </div></div><br>
+                                      <div class="row">
+                                     <div class="col-md-10" >
+                                        <input type="button" value="Save" ng-click="saveImg(catTit)" class="btn btn-danger">
+                                    </div></div>
+                                 </div>
+                           </div><br><br>
+                           <div class="row">
+                              <div class="col-md-10">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="">Images</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="img in imgList" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                            <td ng-drag="true" ng-drag-data="img" ng-class=""><img ng-src="{{img.imgData}}" alt="Category Image" width="80" height="60">
+                                            <span>{{img.imgName}} |&nbsp;&nbsp;<a href="" ng-click="removeImg(img.imgName);"><i style="color:#333;" class="fa fa-trash"></i></a></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table></div>
+                           </div>
+                   </div>
+                   
+                   
+                   
+                  </div>         
+                </div>
+          </div>
+        
+
+            <!-- /tasks table -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    

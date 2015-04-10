@@ -1,0 +1,110 @@
+<form name="cityGrid" action="#" role="form" id="cntForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">City</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{cityResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{cityResponse.message}}</div>
+		<div class="panel-body">
+		<div class="form-group">
+				<div class="row">
+					<div class="col-md-2">Code</div>
+					<div class="col-md-4">
+						<input type="text" id="code" name="code" maxlength="3" minlength="2" maxlength="3" data-validator="required,validateAlpha" data-valid-method="watch" data-required-error-message="Enter the code"
+										data-ng-model="city.cityCode" placeholder="- Add Code-" ng-focus="hideeerormsg();"
+										class="form-control ">										
+										<input type="hidden" id="id" name="cityId" data-ng-model="city.cityId" />
+								<span style="color:hsl(0, 100%, 50%);" ng-show="cityGrid.code.$error.minlength">Enter Atleast 2 character</span>	
+					</div>
+					<div class="col-md-2">Name</div>
+					<div class="col-md-4">
+						<input type="text" id="name" name="name" maxlength="50" ng-focus="hideeerormsg();"
+									 data-validator="required,validateAlphaSpace" data-valid-method="watch" data-required-error-message="Enter the name"
+										placeholder="- Add Name-" data-ng-model="city.cityName" class="form-control">										
+								</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2">Description</div>
+						<div class="col-md-4">
+							<input type="text" id="desc" name="desc" ng-focus="hideeerormsg();"
+										placeholder="- Add Description-" maxlength="150"
+										data-ng-model="city.cityDescription"
+										class="form-control" data-validator="required"  data-required-error-message="Enter the Description">
+						</div>
+						<div class="col-md-6">Active</div>
+							<div class="col-md-3">
+							<span ng-click="city.cityIsactiveTrue=!city.cityIsactiveTrue" ng-hide="!city.cityIsactiveTrue">
+								<a href=""><i style="color: #21b384;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span> <span ng-click="city.cityIsactiveTrue=!city.cityIsactiveTrue" ng-hide="city.cityIsactiveTrue">
+								<a href=""><i style="color: #808080;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-2">							
+							<input type="button" data-validation-submit="cityGrid" data-ng-click="saveCity(cityGrid)" value="Add" class="btn btn-primary"
+										id="saveBtn">
+						</div>
+						<div class="col-md-8"></div>
+					</div>
+				</div>
+			<div class="block clsGrid">
+				<table class="table table-bordered" id="paneltbl">
+					<thead>
+						<tr>
+							<th class="">Code</th>
+							<th class="">Name</th>
+							<th class="">Description</th>
+							<th class="">Active</th>
+							<th style="width: 55px;">Action</th>
+						</tr>
+					</thead>
+					<tbody id="tb_body">						
+						<tr data-ng-show="master.cities.Status=='Ok'" id="results"
+							data-ng-repeat="city_data in master.cities.cities">
+							<td>{{city_data.cityCode}}</td>
+							<td>{{city_data.cityName}}</td>
+							<td>{{city_data.cityDescription}}</td>
+							<td>{{city_data.activeModel}}</td>
+							<td style="width: 55px;">								
+								<p>										
+										<a
+											data-ng-click="editCity(city_data.cityId,city_data.cityCode,city_data.cityName,city_data.cityDescription,city_data.cityIsactive)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp; <a data-ng-click="deleteCity(city_data.cityId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+<script>
+	$(document).ready(function() {
+		var citytog = 0;
+		$(".cityisActive").on('click', function() {
+			if (citytog % 2 == 0) {
+				$(".cityisActive").prop('checked', true);
+				$(".cityisActive").val('Y');
+			} else {
+				$(".cityisActive").prop('checked', false);
+				$(".cityisActive").val('N');
+			}
+			citytog++;
+		});
+	});
+</script>

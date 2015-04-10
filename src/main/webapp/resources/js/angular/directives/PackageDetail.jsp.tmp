@@ -1,0 +1,223 @@
+<form name="savePackage" role="form" method="POST" novalidate>
+                <div class="panel-body" ng-init="getPackLoc(pkId)">    
+                     
+                     <div class="col-md-8">
+                      <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Name:</div>
+                            <div class="col-md-6">
+                               <input type="text" name="packageName" placeholder="Package name" class="form-control margin-zero" ng-model="packName" data-validator="required,validateAlphaSpace" data-required-error-message="Enter the package name">
+                            </div>
+                       </div>
+                        
+                        <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Code:</div>
+                            <div class="col-md-6">
+                               <input type="text" name="packageCode" placeholder="" class="form-control margin-zero" ng-model="packCode" readonly="readonly">
+                            </div>
+                       </div>
+                       
+                      
+                       
+                       <multi-location></multi-location>
+                         <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Category:</div>
+                            <div class="col-md-6" ng-click="getCat();">
+                               <typeahead items="items" name="packageCategory" prompt="Start typing a Category" title="catTitle" model="pack.catName" modobj="catObj"  modby="catTitle" on-select="onItemSelected()"/>
+                               <div data-ng-show="package_category_error" class="sucess_error1">Start typing a package category</div>
+                            </div>
+                       </div>
+                        <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Vendor Name:</div>
+                            <div class="col-md-6" ng-click="getVend()">
+                               <typeahead items="items" name="packageVendorname"  prompt="Start typing a Vendor" title="viVendorName" model="pack.vendName" modobj="vendObj" modby="viVendorName" on-select="onItemSelected()" />
+                               <div data-ng-show="package_vendorname_error" class="sucess_error1">Start typing a vendor name</div>
+                            </div>
+                       </div>
+                        
+                        <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Days:</div>
+                            <div class="col-md-6">
+                               <input type="text" name="packageDays" placeholder="No. of days" class="form-control margin-zero" ng-model="packDays" min="0" max="100" data-validator="validateNumber" >
+                            </div>
+                       </div>
+                       
+                       <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Nights:</div>
+                            <div class="col-md-6">
+                               <input type="text" name="packageNights" placeholder="No. of nights" class="form-control margin-zero" ng-model="packNights" min="0" max="100" data-validator="validateNumber" >
+                            </div>
+                       </div>
+                       
+                       <div class="row mrgin-row">
+                            <div class="col-md-4 label-styl">Over View:</div>
+                            <div class="col-md-6">
+                               <textarea class="form-control margin-zero" name="packageOverview" rows="2" ng-model="packDesc" data-validator="required" data-required-error-message="Enter the package description"></textarea>
+                            </div>
+                       </div>
+                       
+                   </div>
+                   
+                   <div class="col-md-4">
+                        <div class="row mrgin-row">
+                           <div class="col-md-4 label-styl">Type</div>
+                           <div class="col-md-6">
+                                <select ng-init="selpacktype=1" name="packageType" ng-model="selpacktype" name="packtype" id="packtype" class="form-control">
+								        <option ng-repeat="typ in packtype" ng-selected="pkType == typ.id" value="{{typ.id}}">{{typ.name}}</option>
+								</select>
+                           </div>
+                           <!--<div data-ng-show="package_packagetype_error" class="sucess_error1 col-md-10 text-right">Select the package type</div>-->
+                        </div>
+                        <div class="row mrgin-row">
+                           <div class="col-md-4 label-styl">Special</div>
+                           <div class="col-md-6">
+                                <select ng-init="selpackpkspecial=1" name="packageSpecial" ng-model="selpackSpecial" name="packpkspecial" id="packpkspecial" class="form-control">
+								        <option ng-repeat="spc in packspecial" ng-selected="pkSpecial == spc.id" value="{{spc.name}}">{{spc.name}}</option>
+								</select>
+                           </div>
+                           <!--<div data-ng-show="package_packagetype_error" class="sucess_error1 col-md-10 text-right">Select the package type</div>-->
+                        </div>
+                         <div class="row mrgin-row">
+                           <div class="col-md-4 label-styl">Order</div>
+                           <div class="col-md-6">
+                                <select ng-init="selpackpkspecial=1" name="packageOrder" ng-model="selpackOrder" name="packpkOrder" id="packpkOrder" class="form-control">
+								        <option ng-repeat="ord in packorder" ng-selected="pkOrder == ord.id" value="{{ord.name}}">{{ord.name}}</option>
+								</select>
+                           </div>
+                           <!--<div data-ng-show="package_packagetype_error" class="sucess_error1 col-md-10 text-right">Select the package type</div>-->
+                        </div>
+                      <!--   <div class="row mrgin-row">
+                           <div class="col-md-4 label-styl">Featured</div>
+                           <div class="col-md-4">
+                                     <span ng-click="isfeatured=!isfeatured" ng-hide="isfeatured">
+                                     <a href=""><i style="color:#808080;" class="icon-heart"></i></a>
+                                   </span>
+                                   <span ng-click="isfeatured=!isfeatured" ng-hide="!isfeatured">
+                                     <a href=""><i style="color:#FF3366;" class="icon-heart"></i></a>
+                                   </span>
+                           </div>
+                        </div>--> 
+                   <br>
+                       <div class="block">
+                           <table class="table table-bordered">
+                               <thead>
+                                <tr>
+                                  <th class="" colspan="2"><i class="fa fa-cog fa-spin"></i> Services </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                  <td>Flight</td>
+                                   <td>
+                                   <span ng-click="planecheck=!planecheck" ng-hide="planecheck">
+                                      <a href=""><i style="color:#21b384;" class="fa fa-plane"></i></a>
+                                   </span>
+                                   <span ng-click="planecheck=!planecheck" ng-hide="!planecheck">
+                                     <a href=""><i style="color:#808080;" class="fa fa-plane"></i></a>
+                                   </span>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                  <td>Hotel</td>
+                                  <td>
+                                   <span ng-click="hotelchck=!hotelchck" ng-hide="hotelchck">
+                                     <a href=""><i style="color:#21b384;" class="fa fa-building-o"></i></a>
+                                   </span>
+                                   <span ng-click="hotelchck=!hotelchck" ng-hide="!hotelchck">
+                                     <a href=""><i style="color:#808080;" class="fa fa-building-o"></i></a>
+                                   </span>
+                                  </td>
+                                 </tr>
+                                 <tr>
+                                  <td>Food</td>
+                                  <td>
+                                   <span ng-click="foodcheck=!foodcheck" ng-hide="foodcheck">
+                                     <a href=""><i style="color:#21b384;" class="fa fa-cutlery"></i></a>
+                                   </span>
+                                   <span ng-click="foodcheck=!foodcheck" ng-hide="!foodcheck">
+                                     <a href=""><i style="color:#808080;" class="fa fa-cutlery"></i></a>
+                                   </span>
+                                  </td>
+                                 </tr>
+                                 <tr>
+                                  <td>Train</td>
+                                  <td>
+                                   <span ng-click="traincheck=!traincheck" ng-hide="traincheck">
+                                     <a href=""><i style="color:#21b384;" class="icon-film"></i></a>
+                                   </span>
+                                   <span ng-click="traincheck=!traincheck" ng-hide="!traincheck">
+                                     <a href=""><i style="color:#808080;" class="icon-film"></i></a>
+                                   </span>
+                                  </td>
+                                 </tr>
+                                 <tr>
+                                 <td>Bus</td>
+                                  <td>
+                                   <span ng-click="buscheck=!buscheck" ng-hide="buscheck">
+                                     <a href=""><i style="color:#21b384;" class="fa fa-bus"></i></a>
+                                   </span>
+                                   <span ng-click="buscheck=!buscheck" ng-hide="!buscheck">
+                                     <a href=""><i style="color:#808080;" class="fa fa-bus"></i></a>
+                                   </span>
+                                  </td>
+                                 </tr>
+                                 <tr>
+                                 <td>Ferry</td>
+                                  <td>
+                                   <span ng-click="ferrycheck=!ferrycheck" ng-hide="ferrycheck">
+                                     <a href=""><i style="color:#21b384;" class="icon-boat"></i></a>
+                                   </span>
+                                   <span ng-click="ferrycheck=!ferrycheck" ng-hide="!ferrycheck">
+                                     <a href=""><i style="color:#808080;" class="icon-boat"></i></a>
+                                   </span>
+                                  </td>
+                                 </tr>
+                               </tbody>
+                            </table>
+                        </div>
+                   </div>
+              <div class="form-actions text-right" >
+						<input type="button" value="Save" data-validation-submit="savePackage" ng-click="savePack();" class="btn btn-danger"> 
+						<input type="reset" value="Clear" class="btn btn-primary">
+						<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-default">
+		      </div>
+           </div>
+           </form>
+           
+        <!--  <div class="panel panel-default">
+                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i> Data Grid</h6></div>
+                    <div class="panel-body">
+
+                        <div class="block">
+                            <div class="">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="">Code</th>
+                                            <th class="">Name</th>
+                                            <th class="">Place</th>
+                                            <th class="">Days</th>
+                                            <th class="">Nights</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="pack in packages" style="cursor:pointer" ng-click="getPack(pack)">
+                                            <td>{{pack.pkCode}}</td>
+                                            <td>{{pack.pkName}}</td>
+                                            <td>{{pack.pkPlace}}</td>
+                                            <td>{{pack.pkDays}}</td>
+                                            <td>{{pack.pkNights}}</td>
+                                            <td>
+                                            <p>
+                                               <a href="" ng-really-message="Are you sure?" ng-really-click="removePack(pack.pkId)"><i style="color:#F57A8F;" class="fa fa-trash" ></i></a> 
+                                            </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> --> 
+           </div>

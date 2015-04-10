@@ -1,0 +1,319 @@
+<div class="page-contents">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i>ENQUIRY INFORMATION
+			</h6>
+		</div>
+		<div class="row">
+			<div ng-class="{'sucess_error': !data.editEnquirySuccess}">{{data.errorMessage}}</div>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Enquiry Code:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqCode}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Submitted On:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqSumbitedDate | date:'dd/MM/yyyy h:mma'}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+						<label>Customer Name:</label>
+					</div>
+					<div class="col-md-7">
+						<span class="form-control">{{enquiry.enqCustomerName}}</span>
+					</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Updated On:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqUpdatedOn | date:'dd/MM/yyyy h:mma'}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Customer Email:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.email}}</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6" >
+						<div class="row">
+							<div class="col-md-4">
+						<label>Phone:</label>
+					</div>
+					<div class="col-md-7">
+						<span class="form-control">{{enquiry.enqMobile}}</span>
+					</div>
+						</div>
+					</div>						
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Customer Comments:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control" style="height:50px;float:left;overflow:auto;">{{enquiry.enqMessage}}</span>			
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Reply:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control" style="height:50px;float:left;overflow:auto;">{{enquiry.enqReplay}}</span>		
+							</div>
+						</div>
+					</div>	
+										
+				</div>
+	
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Subject:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqSubject}}</span>			
+							</div>
+						</div>
+					</div>	
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Status:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqStatus}}</span>			
+							</div>
+						</div>
+					</div>						
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default" ng-show="enquiry.enqPackageName">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i>PACKAGE INFORMATION
+			</h6>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row form-group">
+					<div class="col-md-6"  >
+						<div class="row">
+							<div class="col-md-4">
+								<label>Package Name:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqPackageName}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+						<label>Trip Date:</label>
+					</div>
+					<div class="col-md-7">
+						<span class="form-control">{{enquiry.enqTripDate | date:'dd/MM/yyyy'}}</span>
+					</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of Adults:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.noOfAdults}}</span>			
+							</div>
+						</div>
+					</div>		
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of Children:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.noOfChildren}}</span>			
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default" ng-show="trip.tripcode">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i>TRIP INFORMATION
+			</h6>
+		</div>
+		
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row form-group">
+					<div class="col-md-6"  >
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Trip Code:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.tripcode}}</span>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Trip Date:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.travelDate}}</span>
+							</div>
+						</div>
+						
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Package Name:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.packName}}</span>
+							</div>
+						</div>
+						
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Days & Nights:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.days}} & {{trip.nights}}</span>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Final Trip Amount:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.finalAmount}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Address:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control" style="height:50px;float:left;overflow:auto;">{{trip.address}}</span>			
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>City:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.city}}</span>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>State:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.state}}</span>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Country:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.country}}</span>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label>Postal Code:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.postelCode}}</span>
+							</div>
+						</div>
+					</div>					
+				</div>
+				<div class="row form-group" ng-if="persons && persons.length != 0">
+					<div class="col-md-9"  >
+						<div class="subtitle">Passenger List:</div>
+						  
+							<table class="table table-bordered">
+								<thead>
+								<tr>
+									<th class="">Name</th>
+									<th class="">Age</th>
+								</tr>
+								</thead>
+								<tbody id="tb_body">
+									<tr data-ng-repeat="person_data in persons">
+										<td>{{person_data.firstname}} {{person_data.lastname}}</td>
+										<td>{{person_data.age}}</td>
+									</tr>
+								</tbody>
+							</table>
+						  
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<div class="form-actions text-right">
+		<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+	</div>
+	
+	<br/>
+</div>

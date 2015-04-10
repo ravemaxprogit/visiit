@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h6 class="panel-title">
+			<i class="icon-pencil3"></i>Upload Trip Voucher
+		</h6>
+	</div>
+	<div class="row">
+				<div ng-class="{'sucess_message': messagedata.Vouchersuccess, 'sucess_error': !messagedata.Vouchersuccess}">{{messagedata.Vouchermessage}}</div>
+			</div>
+	<div class="panel-body">
+	  <div class="col-md-12">
+		<div class="row form-group">
+			<div class="col-md-12 subtitle">Uploaded FileName  :
+			    <span  ng-model="filename"><a data-ng-if="filenamelink" ng-href={{filenamelink}}> {{filename}}</a></span>
+			    <span data-ng-if="!filenamelink"> {{filename}}</span>
+             </div> 
+				<!-- <img data-ng-show="imgfile" ng-src="{{imgfile}}" class="img-responsive" alt="Hotel Image" width="300" height="200">
+				<tr ng-repeat="img in imgList" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                            <td ng-drag="true" ng-drag-data="img" ng-class=""><img ng-src="{{img.imgData}}" alt="Category Image" width="80" height="60">
+                                            <span>{{img.imgName}} |&nbsp;&nbsp;<a href="" ng-click="removePackageImg(img.imgName);"><i style="color:#333;" class="fa fa-trash"></i></a></span>
+                                            </td>
+                                        </tr> -->
+			</div>
+			<div class="col-md-12">
+				<div class="form-actions text-center">
+					<span data-ng-show="!VoucherStatus" >
+					<button  type="file" ng-file-select ng-model="myFiles" ng-file-change="fileSelected($files, $event)" ng-multiple="false" accept="*.*" resetOnClick="true" class="btn btn-primary">Upload</button></span>	
+					<span data-ng-show="VoucherStatus" ><input type="submit" value="Delete" data-ng-click="deleteTripVoucher(tripCode)" class="btn btn-primary"></span>
+					<span data-ng-show="hideImageSaveBtn" ><input  type="submit" value="Save" data-ng-click="saveTripVoucher(tripCode)" class="btn btn-danger"> </span>
+					<input type="reset" value="Cancel" ng-click="cancel();" class="btn btn-default">
+				</div>
+			</div>
+			<span  ng-model="tripCode"></span>
+		</div>
+	  </div>
+	</div>
+</div>

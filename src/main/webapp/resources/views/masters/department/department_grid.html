@@ -1,0 +1,72 @@
+<div class="page-contents" acl-module resource-id="Department">
+<form name="departmentGrid" action="#" role="form" id="dprtForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="depId">Department</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div class="panel-body">
+		<div class="row">
+				<div class="col-md-6">
+					<input type="text" name="department" placeholder="- Search Department -"
+						class="form-control" ng-model="d_search" required>
+				</div>
+		</div>
+		<div class="row">
+		<div data-ng-show="message.success" class="sucess_message">{{departmentResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{departmentResponse.message}}</div>
+		</div>
+		<div class="block">
+		<div class="form-actions text-right">
+						<input ng-click="deparmentAdd();" ng-disabled="isProcessing" type="button" value="Add"
+							class="btn btn-danger">
+		</div>
+			<table class="table table-bordered" id="paneltbl">
+				<thead>
+					<tr>
+						<th class="">Code</th>
+						<th class="">Name</th>
+						<th class="">Description</th>
+						<th class="">Active</th>
+						<th class="">Action</th>
+					</tr>
+				</thead>
+				<tbody id="tb_body">
+					<tr data-ng-show="dapartments.Status=='Ok'" id="results"
+						data-ng-repeat="deparment_data in dapartments.department | filter:dept_search">
+						<td>{{deparment_data.deptCode}}</td>
+						<td>{{deparment_data.deptName}}</td>
+						<td>{{deparment_data.deptDescription}}</td>
+						<td>{{deparment_data.deptIsActive | true_false}}</td>
+						<td>
+							<p>
+							 <a
+								data-ng-click="editDepartment(deparment_data.deptId)"><i
+								style="color: #808080;" class="icon-pencil2"></i></a>
+							&nbsp;&nbsp;&nbsp;	<a data-ng-click="deleteDepartment(deparment_data.deptId)"><i style="color: red;" class="icon-close"></i></a>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</div>
+	</div>
+</form>
+</div>
+<script>
+	$(document).ready(function() {
+		var tog = 0;
+		$(".isActive").on('click', function() {
+			if (tog % 2 == 0) {
+				$(".isActive").prop('checked', true);
+				$(".isActive").val('Y');
+			} else {
+				$(".isActive").prop('checked', false);
+				$(".isActive").val('N');
+			}
+			tog++;
+		});
+	});
+</script>

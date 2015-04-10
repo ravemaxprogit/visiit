@@ -1,0 +1,77 @@
+<div class="page-contents" acl-module resource-id="Country">
+			<form action="#" role="form" novalidate id="onChangeFrm" name="onChangeFrm" method="post">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h6 class="panel-title">
+							<i class="icon-pencil3"></i>COUNTRY
+						</h6>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">Country</div>
+								<div class="col-md-8">
+									<!-- <input type="text" name="country" placeholder="- Choose Country -" class="form-control" ng-model="country" required> -->
+									<select data-ng-model="country_id" data-ng-change="changeCountry()" id="country" class="form-control" >
+										<option selected="selected" value="">- Choose Country -</option>
+										<option data-ng-if="master.countries.Status=='Ok' && country_data.countryIsactive==true" data-ng-repeat="country_data in master.countries.cntryList" value="{{country_data.countryId}}">{{country_data.countryName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">State</div>
+								<div class="col-md-8">					
+									<select data-ng-model="state_id" data-ng-change="changeState()"  name="state" id="state" placeholder="- Choose state -" class="form-control" required>
+										<option selected="selected" data-ng-if="master.states.Status=='Ok' || master.states.message=='There is no State to Display'" value="">- Choose State -</option>
+										<option data-ng-if="master.states.Status=='Ok' && state_data.stateIsactive==true" data-ng-repeat="state_data in master.states.states" value="{{state_data.stateId}}">{{state_data.stateName}}</option>
+									</select>
+									
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">City</div>
+								<div class="col-md-8">
+									<!-- <input type="text" name="country" placeholder="- Choose City -" class="form-control" ng-model="country" required> -->
+									<select data-ng-model="city_id" data-ng-change="changeCity()"  name="city" id="city" placeholder="- Choose state -" class="form-control" required>
+										<option value="" selected="selected" data-ng-if="master.cities.Status=='Ok' || master.cities.message =='There is no City to Display'">- Choose City -</option>
+										<option  data-ng-if="master.cities.Status=='Ok'  && city_data.cityIsactive==true" data-ng-repeat="city_data in master.cities.cities" value="{{city_data.cityId}}">{{city_data.cityName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">Location</div>
+								<div class="col-md-8">
+									<!-- <input type="text" name="country" placeholder="- Choose Location -" class="form-control" ng-model="country" required> -->
+									<select data-ng-model="location_id" data-ng-change="changeLocation()" name="location" id="location" placeholder="- Choose state -" class="form-control" required>
+										<option data-ng-if="master.locations.Status=='Ok' || master.locations.message=='There is no Locations to Display'" value="" selected="selected">- Choose Location -</option>
+										<option data-ng-if="master.locations.Status=='Ok' && location_data.locIsactive==true" data-ng-repeat="location_data in master.locations.locations" value="{{location_data.locId}}">{{location_data.locName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="onChangeId" name="onChangeId"> 
+			</form>
+			<div data-ng-include src="'resources/views/masters/country_grid.html'" data-ng-show="showgrid==1"></div>
+			<div data-ng-include src="'resources/views/masters/state_grid.html'" data-ng-show="showgrid==2"></div>
+			<div data-ng-include src="'resources/views/masters/city_grid.html'" data-ng-show="showgrid==3"></div>
+			<div data-ng-include src="'resources/views/masters/location_grid.html'" data-ng-show="showgrid==4"></div>
+			
+			<!-- /tasks table -->
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			
+		</div>
+		

@@ -1,0 +1,158 @@
+<!-- <script type="text/ng-template" id="custom-datepicker.html">
+    <div class="enhanced-datepicker">
+        <div class="proxied-field-wrap">
+            <input type="text" class="form-control margin-zero" ui-date-format="yy-mm-dd" ng-model="ngModel" ui-date="dateOptions" placeholder="Date Of Joining"/>
+        </div>
+           </div>
+</script>  -->
+
+<div class="page-contents">
+	<form name="saveUser" role="form" method="POST" novalidate>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>USER INFORMATION
+				</h6>
+			</div>
+			<div class="row">
+			<div data-ng-show="message.error" class="sucess_error">{{saveUserResponse.message}}</div>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-4">
+							<label>Code:</label>
+							<span class="form-control" ng-model="user.userCode">{{user.userCode}}</span>
+						</div>
+						<div class="col-md-4">
+							<label>First Name:</label>
+							<input type="text" name="empFirstName" placeholder="First Name" maxlength="25" class="form-control" ng-model="user.userFirstName" data-validator="required,validateAlphaSpace" data-required-error-message="Enter the First Name">
+						</div>
+						<div class="col-md-4">
+							<label>Last Name:</label>
+							<input type="text" name="empLastName" placeholder="Last Name" maxlength="25" class="form-control" ng-model="user.userLastName" data-validator="required,validateAlphaSpace" data-required-error-message="Enter the Last Name">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label>User Id:</label>
+							<input type="email" name="empUserId" placeholder="User ID" maxlength="50" class="form-control" ng-model="user.userId" data-validator="required,validateEmail" data-required-error-message="Enter the User Id" data-email-error-message="Enter the Correct Email Address">
+						</div>
+						<div class="col-md-4">
+							<label>Office Email:</label>
+							<input type="email" name="empOfficeMail" placeholder="Office Email" maxlength="50" class="form-control" ng-model="user.userOfficeMail" data-validator="required,validateEmail" data-required-error-message="Enter the Office Email" data-email-error-message="Enter the Correct Email Address">
+						</div>
+						<div class="col-md-4">
+							<label>Personal Email:</label>
+							<input type="email" name="empMail" placeholder="Personal Email" maxlength="50" class="form-control" ng-model="user.userMail" data-validator="required,validateEmail" data-required-error-message="Enter the Office Email" data-email-error-message="Enter the Correct Email Address">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label>Phone:</label>
+							<input type="text" name="empPhone" placeholder="Phone" maxlength="15" class="form-control" ng-model="user.userPhone" data-validator="required,validateMobilenumspecial" data-required-error-message="Enter the Phone">
+						</div>
+						<div class="col-md-4">
+							<label>Extension No:</label>
+							<input type="text" name="empExtensionNo" placeholder="Extension No" maxlength="10" class="form-control" ng-model="user.userExtentionNo" data-validator="validateNumber">
+						</div>
+						<div class="col-md-4">
+							<label>Date Of Joining:</label>
+								<input type="text" class="form-control margin-zero date-control" name="validfrom1" id="userDoj" ng-model="user.userDoj" data-validator="required" valid-date data-required-error-message="Please select Date Of Joining">
+                                <!-- <input type="text" name="userDoj" ng-model="user.userDoj"  custom-datepicker date-options='{"dateFormat":"dd/mm/yy"}' > -->
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label>ESI No:</label>
+							<input type="text" name="empEsiNo" placeholder="ESI No" maxlength="20" class="form-control" ng-model="user.userEsiNo" data-validator="validateAlphanum" data-required-error-message="Enter the ESI No" >
+						</div>
+			
+						<div class="col-md-4">
+							<label>PAN No:</label>
+							<input type="text" name="empPanNo" placeholder="PAN No" maxlength="20" class="form-control" ng-model="user.userPanNo" >
+						</div>
+						<div class="col-md-4">
+							<label>Passport No:</label>
+							<input type="text" name="empPassportNo" placeholder="Passport No" maxlength="20" class="form-control" ng-model="user.userPassportNo" >
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<label>PF No:</label>
+							<input type="text" name="empPfNo" placeholder="PF No" maxlength="20" class="form-control" ng-model="user.userPfNo" >
+						</div>
+						<div class="col-md-4">
+							<label>Department:</label>
+							<select data-ng-model="user.userDeptId" name="departments" class="form-control" placeholder="- Choose Department -"  data-validator="required"  data-valid-method="watch" data-required-error-message="Select department" >
+								<option ng-selected="selected" value="">- Choose Department -</option>
+								<option data-ng-if="mangeuser.departments.Status=='Ok' && dept_data.deptIsActive==true " data-ng-selected="user.userDeptId == dept_data.deptId" data-ng-repeat="dept_data in mangeuser.departments.department" value="{{dept_data.deptId}}">{{dept_data.deptName}}</option>
+							</select>
+							<span class="error" ng-show="saveUser.country.$required && saveUser.country.$invalid">Please select Department</span>
+						</div>
+						<div class="col-md-4">
+							<label>Designation:</label>
+							<select data-ng-model="user.userDsgId" name="designations" class="form-control" placeholder="- Choose Designation -"  data-validator="required"  data-valid-method="watch" data-required-error-message="Select Designation" >
+								<option ng-selected="selected" value="">- Choose Designation -</option>
+								<option data-ng-if="mangeuser.designations.Status=='Ok' && desg_data.dsgIsActive==true "  data-ng-selected="user.userDsgId == desg_data.dsgId" data-ng-repeat="desg_data in mangeuser.designations.designationList" value="{{desg_data.dsgId}}">{{desg_data.dsgName}}</option>
+							</select>
+							<span class="error" ng-show="saveUser.designations.$required && saveUser.designations.$invalid">Please select Designation</span>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-1" >
+							<label>Status:</label>
+							<!-- <input type="text" name="empStatus" placeholder="Status" class="form-control" ng-model="user.userIsActive" data-validator="required" data-required-error-message="Enter the Status" > -->
+							<div class="col-md-3" style="margin-top: 3px;">
+								<span ng-click="user.userIsActive=!user.userIsActive" ng-hide="!user.userIsActive" >
+							        <a href=""><i style="color: #21b384;" class="fa fa-check-square rect-check"></i></a>
+							    </span> 
+							    <span ng-click="user.userIsActive=!user.userIsActive" ng-hide="user.userIsActive" >
+							        <a href=""><i style="color: #808080;" class="fa fa-check-square rect-check"></i></a>
+							    </span>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>Modules
+				</h6>
+			</div>
+			<div class="panel-body">
+				<div class="">
+					<div class="row">
+						<div class="col-md-9">
+							<label>Modules:</label>
+							<multi-select ng-model="user.modules" available="modules" selected-label="Selected Modules" available-label="Available Modules" display-attr="modName" sub-modules="subModules" user-sub-modules="user.subModules" service-call="true" validate="required"></multi-select>
+						</div>
+					</div>
+					<div class="row">					
+						<div class="col-md-9">
+							<label>All Sub Modules:</label>
+							<multi-select ng-model="user.subModules" available="subModules" selected-label="Selected Sub-modules" available-label="Available Sub-modules" display-attr="modName" ></multi-select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-actions text-right">
+			<input type="submit" data-validation-submit="saveUser" ng-click="userSave()" id="submit" name="save" value="Save" class="btn btn-danger">
+			<input type="reset" value="Clear" ng-click="clear1('saveUser')" class="btn btn-default">
+			<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+		</div>
+	</form>
+	<br/>
+</div>
+ <script>       
+  	$( ".date-control" ).datepicker({dateFormat: 'dd/mm/yy'});
+ </script>

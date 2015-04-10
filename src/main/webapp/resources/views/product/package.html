@@ -1,0 +1,58 @@
+<div class="page-contents" acl-module resource-id="Package">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> Package Grid
+			</h6>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" name="hotel" placeholder="- Search Package -"
+						class="form-control" ng-model="p_search" required>
+				</div>
+			</div>
+			<div data-ng-show="message.success" class="sucess_message">{{packageAddResponse.message}}</div>
+			<div data-ng-show="message.error" class="sucess_error">{{packageAddResponse.message}}</div>
+			<div class="block">
+				<div class="form-actions text-right">
+					<input ng-click="pakageAddButton();" ng-disabled="isProcessing" type="button" value="Add"
+						class="btn btn-danger">
+				</div>
+				<div class="clsGrid">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="">Code</th>
+								<th class="">Name</th>
+								<!--<th class="">Place</th>-->
+								<th class="">Days</th>
+								<th class="">Nights</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="pack in packages | filter:package_search">
+								<td>{{pack.pkCode}}</td>
+								<td>{{pack.pkName}}</td>
+								<!--<td ng-click="pakageAdd(pack)">{{pack.pkPlace}}</td>  -->
+								<td>{{pack.pkDays}}</td>
+								<td>{{pack.pkNights}}</td>
+								<td>
+									<p>
+									<a ng-click="pakageAdd(pack)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+												&nbsp;&nbsp;&nbsp; 
+										<a href="" ng-really-message="Are you sure?"
+											ng-really-click="removePack(pack.pkId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

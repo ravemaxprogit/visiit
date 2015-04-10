@@ -1,0 +1,94 @@
+
+<style type="text/css">
+
+     .bg {
+         background-image:url('resources/images/login-bg.jpg');
+         background-repeat:no-repeat;
+         /*background-size:cover;*/
+         background-position:top center;
+         width:100%;
+         overflow: hidden;
+     }
+
+     .validation-invalid
+     {
+     	color:red;
+     }
+     .login-div {
+         width: 306px;
+         min-height: 100px;
+         margin: 10% auto 0;
+         /*background-image: url('src/main/webapp/resources/images/login-bg-repeat.png');
+         background-repeat: repeat;*/
+         background-color: rgba(255, 255, 255, 0.8);
+         -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+         -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+         box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.5);
+         border-bottom: 3px #ef3723 solid;
+     }
+
+     .login-headear {
+         width: 306px;
+         height: 77px;
+         background: #e6e6e6;
+         background-image: url('resources/images/login-logo.png');
+         background-position: center;
+         background-repeat: no-repeat;
+     }
+     
+     .login-body
+     {
+         width:306px;
+         min-height:100px;
+     }
+
+     .loginbox {
+         padding:5px;
+         width:250px;
+         text-align:center;
+         margin-bottom:8px;
+         border:1px double #a6a6af;
+         outline:none;
+         border-radius:4px;
+        
+     }
+    .loginbutton{
+      	padding:5px;
+         /* width:260px; */
+         text-align:center;
+         margin-bottom:8px;
+         outline:none;
+         border-radius:4px;
+     }
+     .fgpass{
+      	 color: #EE2924;
+     }
+ </style>
+<div data-ng-controller="userController">
+<form name="loginForm" role="form" novalidate id="loginFrm" autocomplete="off">
+    <div class="login-div">
+        <div class="login-headear">
+        </div>
+        <div class="login-body">
+            <div align="center" style="width:306px;">
+                <img style="margin-top:15px;" src="resources/images/login-key.png"></img>
+            </div>
+            <div data-ng-show="message.success" class="sucess_message">{{user.message}}</div>
+			<div data-ng-show="message.error" class="sucess_error">{{user.message}}</div>
+            <div align="center" style="width:306px; min-height:100px;">
+                <br></br>
+                <input  type="text" id="userName" name="userName" ng-focus="clearerrmsg();" placeholder="Enter your username" data-ng-model="login.username" class="loginbox"   data-validator="required" data-valid-method="watch" data-required-error-message="Enter your username" autofocus="autofocus" autofill="autofill" autocomplete="off" >
+                <input  type="password" id="password" name="passWord" ng-focus="clearerrmsg();" placeholder="Enter your password" data-ng-model="login.password" class="loginbox" data-validator="required" data-valid-method="watch" data-required-error-message="Enter your password" autofill="autofill" autocomplete="off" >
+                </div>
+                <div align="center"> <a class="fgpass" ui-sref="forgotPassword">Forgot Password ?</a></div>
+            <div align="center" style="width:306px; height:90px;">
+                <input  data-ng-click="checkLogin(loginForm)" class="loginbutton" type="image" src="resources/images/login-btn.png" alt="Login"></input>
+            </div>
+            <!-- <div align="center" >
+                <a ui-sref="changePassword"><input type="button" value="Forget Password" class="btn btn-danger loginbutton" /></a>
+                <a ui-sref="register"><input type="button" value="Registration" class="btn btn-danger"/></a>                
+            </div> -->
+        </div>
+    </div>
+    </form>
+</div>

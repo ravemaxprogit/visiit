@@ -1,0 +1,124 @@
+<form name="locationGrid" action="#" role="form" id="cntForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">Location</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{locationResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{locationResponse.message}}</div>
+		<div class="panel-body">
+		<div class="form-group">
+				<div class="row">
+					<div class="col-md-2">Code</div>
+					<div class="col-md-4">
+						<input type="text" id="code" name="code" maxlength="3" minlength="2" maxlength="3" data-validator="required,validateAlpha" data-valid-method="watch" data-required-error-message="Enter the code"
+										data-ng-model="location.locCode" placeholder="- Add Code-" ng-focus="hideeerormsg();"
+										class="form-control ">
+										<input type="hidden" id="id" name="locId" data-ng-model="location.locId" />
+								<span style="color:hsl(0, 100%, 50%);" ng-show="locationGrid.code.$error.minlength">Enter Atleast 2 character</span>	
+					</div>
+					<div class="col-md-2">Name</div>
+					<div class="col-md-4">
+						<input type="text" id="name" name="name" data-validator="required,validateAlphaSpace" maxlength="50" data-valid-method="watch" data-required-error-message="Enter the name"
+										placeholder="- Add Name-" data-ng-model="location.locName" ng-focus="hideeerormsg();"
+										class="form-control">										
+								</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2">Description</div>
+						<div class="col-md-4">
+							<input type="text" id="desc" name="desc"
+										placeholder="- Add Description-" maxlength="100" ng-focus="hideeerormsg();"
+										data-ng-model="location.locDescription"
+										class="form-control" data-validator="required"  data-required-error-message="Enter the Description">
+						</div>
+						<div class="col-md-6">Active</div>					
+											<div class="col-md-3">
+							<span ng-click="location.locationIsactiveTrue=!location.locationIsactiveTrue" ng-hide="!location.locationIsactiveTrue">
+								<a href=""><i style="color: #21b384;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span> <span ng-click="location.locationIsactiveTrue=!location.locationIsactiveTrue" ng-hide="location.locationIsactiveTrue">
+								<a href=""><i style="color: #808080;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span>
+						</div>
+										
+																	 
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2">Review Code</div>
+						<div class="col-md-2">							
+							<input type="text" id="reviewCode" name="reviewCode"  ng-focus="hideeerormsg();"
+							class="form-control" ng-model="location.reviewCode" maxlength="30">
+						</div>
+						<div class="col-md-8"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-2">							
+							<input type="button" data-validation-submit="locationGrid" data-ng-click="saveLocation(locationGrid)" value="Add" class="btn btn-primary"
+										id="saveBtn">
+						</div>
+						<div class="col-md-8"></div>
+					</div>
+				</div>
+			<div class="block clsGrid">
+				<table class="table table-bordered" id="paneltbl">
+					<thead>
+						<tr>
+							<th class="">Code</th>
+							<th class="">Name</th>
+							<th class="">Description</th>
+							<th class="">Review Code</th>
+							<th class="">Active</th>
+							<th style="width: 55px;">Action</th>
+						</tr>
+					</thead>
+					<tbody id="tb_body">					
+						<tr data-ng-show="master.locations.Status=='Ok'" id="results"
+							data-ng-repeat="location_data in master.locations.locations">
+							<td>{{location_data.locCode}}</td>
+							<td>{{location_data.locName}}</td>
+							<td>{{location_data.locDescription}}</td>
+							<td>{{location_data.reviewCode}}</td>
+							<td>{{location_data.activeModel}}</td>
+							<td style="width: 55px;">							
+								<p>										
+										<a
+											data-ng-click="editLocation(location_data.locId,location_data.locCode,location_data.locName,location_data.locDescription,location_data.locIsactive,location_data.reviewCode)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp; <a data-ng-click="deleteLocation(location_data.locId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
+<script>
+	$(document).ready(function() {
+		var locationtog = 0;
+		$(".locationisActive").on('click', function() {
+			if (locationtog % 2 == 0) {
+				$(".locationisActive").prop('checked', true);
+				$(".locationisActive").val('Y');
+			} else {
+				$(".locationisActive").prop('checked', false);
+				$(".locationisActive").val('N');
+			}
+			locationtog++;
+		});
+	});
+</script>

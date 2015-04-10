@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+ 
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<beans:import resource="applicationContext-quartz.xml"/>
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- setting maximum upload size -->
+        <beans:property name="maxUploadSize" value="51200000" />
+    </beans:bean>
+    
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+         <beans:property name="host" value="smtp.gmail.com"/>
+         <beans:property name="port" value="587" />
+         <beans:property name="username" value="support@visiit.com"/>
+         <beans:property name="password" value="Worldclass@1"/>
+         <beans:property name="javaMailProperties">
+           <beans:props>
+             <beans:prop key="mail.smtp.auth">true</beans:prop>
+             <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+             <!-- <beans:prop key="mail.smtp.socketFactory.port">465</beans:prop>
+             <beans:prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</beans:prop>
+             <beans:prop key="mail.smtp.port">465</beans:prop>-->
+           </beans:props>
+         </beans:property>
+    </beans:bean>
+	
+		
+	<!-- starts -->
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url"
+            value="jdbc:mysql://localhost:3306/visiit_2015" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="root" />
+    </beans:bean>
+ 
+    <!-- Hibernate 3 SessionFactory Bean definition -->
+    <beans:bean id="hibernate3AnnotatedSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource" />
+        <beans:property name="annotatedClasses">
+            <beans:list>
+                <beans:value>com.rave.visiit.entity.Employees</beans:value>
+                <beans:value>com.rave.visiit.entity.Department</beans:value>
+                <beans:value>com.rave.visiit.entity.Designation</beans:value>
+                <beans:value>com.rave.visiit.entity.AppLogin</beans:value>
+                <beans:value>com.rave.visiit.entity.User</beans:value>
+                <beans:value>com.rave.visiit.entity.RoleMaster</beans:value>
+                <beans:value>com.rave.visiit.entity.SecurityQuestion</beans:value>
+                <beans:value>com.rave.visiit.entity.Country</beans:value>
+                <beans:value>com.rave.visiit.entity.State</beans:value>
+                <beans:value>com.rave.visiit.entity.City</beans:value>
+                <beans:value>com.rave.visiit.entity.Locations</beans:value>
+                <beans:value>com.rave.visiit.entity.Vendor</beans:value>
+                <beans:value>com.rave.visiit.entity.Category</beans:value>
+                <beans:value>com.rave.visiit.entity.Hotel</beans:value>
+                <beans:value>com.rave.visiit.entity.HotelContact</beans:value>
+                <beans:value>com.rave.visiit.entity.Package</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageCost</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageAttraction</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageHotel</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageItinerary</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageInclusion</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageExclusion</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageLocation</beans:value>
+                <beans:value>com.rave.visiit.entity.Featuredpackage</beans:value>
+                <beans:value>com.rave.visiit.entity.CustRegistration</beans:value>
+                <beans:value>com.rave.visiit.entity.HotelKey</beans:value>
+                <beans:value>com.rave.visiit.entity.VendorKey</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageConditions</beans:value>
+                <beans:value>com.rave.visiit.entity.Salutation</beans:value>
+               	<beans:value>com.rave.visiit.entity.PersonDetail</beans:value>
+                <beans:value>com.rave.visiit.entity.TravellerDetail</beans:value>    
+                <beans:value>com.rave.visiit.entity.PaymentTransaction</beans:value>     
+                <beans:value>com.rave.visiit.entity.CustomerEnquiry</beans:value>    
+                <beans:value>com.rave.visiit.entity.Module</beans:value>
+                <beans:value>com.rave.visiit.entity.TripVoucher</beans:value>
+                <beans:value>com.rave.visiit.entity.CronJobAudit</beans:value>
+                <beans:value>com.rave.visiit.entity.CronJobException</beans:value>
+                <beans:value>com.rave.visiit.entity.NewsLetterSubscriber</beans:value>
+                <beans:value>com.rave.visiit.entity.NewsLetter</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageCategory</beans:value>
+                <beans:value>com.rave.visiit.entity.PackageView</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="hibernateProperties">
+            <beans:props>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+                </beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+                <!-- <beans:prop key="hibernate.current_session_context_class">thread</beans:prop> -->
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+     
+
+    <beans:bean id="employeeService" class="com.rave.visiit.service.EmployeeServiceImp">
+        <beans:property name="employeeDao" ref="employeeDao"></beans:property>
+    </beans:bean>
+        <beans:bean id="employeeDao" class="com.rave.visiit.dao.EmployeeDaoImp">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    
+    <beans:bean id="departmentDao" class="com.rave.visiit.dao.DepartmentDaoImpl">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="departmentService" class="com.rave.visiit.service.DepartmentServiceImpl">
+        <beans:property name="departmentDao" ref="departmentDao"></beans:property>
+    </beans:bean>
+    <beans:bean id="designationDao" class="com.rave.visiit.dao.DesignationDaoImp">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="designationService" class="com.rave.visiit.service.DesignationServiceImp">
+        <beans:property name="designationDao" ref="designationDao"></beans:property>
+    </beans:bean>
+    <beans:bean id="appLoginDao" class="com.rave.visiit.dao.AppLoginDaoImp">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="appLoginService" class="com.rave.visiit.service.AppLoginServiceImp">
+        <beans:property name="appLoginDao" ref="appLoginDao"></beans:property>
+    </beans:bean>
+    <beans:bean id="userDao" class="com.rave.visiit.dao.UserDaoImpl">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="userService" class="com.rave.visiit.service.UserServiceImpl">
+        <beans:property name="userDao" ref="userDao"></beans:property>
+        <beans:property name="moduleDao" ref="moduleDao"></beans:property>
+    </beans:bean>
+    <beans:bean id="roleMasterDao" class="com.rave.visiit.dao.RoleMasterDaoImpl">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+    </beans:bean>
+    <beans:bean id="roleMasterService" class="com.rave.visiit.service.RoleMasterServiceImpl">
+         <beans:property name="roleMasterDao" ref="roleMasterDao"/>
+    </beans:bean>
+    <beans:bean id="securityQuesDao" class="com.rave.visiit.dao.SecurityQuestionImp">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="securityQuestionService" class="com.rave.visiit.service.SecurityQuestionServiceImp">
+        <beans:property name="securityQuestionDao" ref="securityQuesDao"></beans:property>
+    </beans:bean>
+    <beans:bean id="countryDao" class="com.rave.visiit.dao.CountryDaoImpl">
+         <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+    </beans:bean>
+    <beans:bean id="countryService" class="com.rave.visiit.service.CountryServiceImpl">
+          <beans:property name="countryDao" ref="countryDao"/>
+    </beans:bean>
+	<beans:bean id="vendorDao" class="com.rave.visiit.dao.VendorDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="vendorService" class="com.rave.visiit.service.VendorServiceImpl">
+	      <beans:property name="vendorDao" ref="vendorDao"/>
+	</beans:bean>
+	<beans:bean id="hotelDao" class="com.rave.visiit.dao.HotelDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="hotelService" class="com.rave.visiit.service.HotelServiceImpl">
+	      <beans:property name="hotelDao" ref="hotelDao"/>
+	</beans:bean>
+	<beans:bean id="hotelContactDao" class="com.rave.visiit.dao.HotelContactDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="hotelContactService" class="com.rave.visiit.service.HotelContactServiceImpl">
+	      <beans:property name="hotelContactDao" ref="hotelContactDao"/>
+	</beans:bean>
+	<beans:bean id="categoryDao" class="com.rave.visiit.dao.CategoryDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="categoryService" class="com.rave.visiit.service.CategoryServiceImpl">
+	      <beans:property name="categoryDao" ref="categoryDao"/>
+	</beans:bean>
+	<beans:bean id="custRegistrationDao" class="com.rave.visiit.dao.CustRegistrationDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="custRegistrationService" class="com.rave.visiit.service.CustRegistrationServiceImpl">
+	      <beans:property name="custRegistrationDao" ref="custRegistrationDao"/>
+	</beans:bean>
+	<beans:bean id="packageDao" class="com.rave.visiit.dao.PackageDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageService" class="com.rave.visiit.service.PackageServiceImpl">
+	      <beans:property name="packageDao" ref="packageDao"/>
+	</beans:bean>
+	<beans:bean id="packageCostDao" class="com.rave.visiit.dao.PackageCostDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageCostService" class="com.rave.visiit.service.PackageCostServiceImpl">
+	      <beans:property name="packageCostDao" ref="packageCostDao"/>
+	</beans:bean>
+	<beans:bean id="packageItineraryDao" class="com.rave.visiit.dao.PackageItineraryDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageItineraryService" class="com.rave.visiit.service.PackageItineraryServiceImpl">
+	      <beans:property name="packageItineraryDao" ref="packageItineraryDao"/>
+	</beans:bean>
+	<beans:bean id="packageAttractionDao" class="com.rave.visiit.dao.PackageAttractionDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageAttractionService" class="com.rave.visiit.service.PackageAttractionServiceImpl">
+	      <beans:property name="packageAttractionDao" ref="packageAttractionDao"/>
+	</beans:bean>
+	<beans:bean id="packageHotelDao" class="com.rave.visiit.dao.PackageHotelDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageHotelService" class="com.rave.visiit.service.PackageHotelServiceImpl">
+	      <beans:property name="packageHotelDao" ref="packageHotelDao"/>
+	</beans:bean>
+	<beans:bean id="packageInclusionDao" class="com.rave.visiit.dao.PackageInclusionDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageInclusionService" class="com.rave.visiit.service.PackageInclusionServiceImpl">
+	      <beans:property name="packageInclusionDao" ref="packageInclusionDao"/>
+	</beans:bean>
+	<beans:bean id="packageExclusionDao" class="com.rave.visiit.dao.PackageExclusionDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageExclusionService" class="com.rave.visiit.service.PackageExclusionServiceImpl">
+	      <beans:property name="packageExclusionDao" ref="packageExclusionDao"/>
+	</beans:bean>
+	<beans:bean id="packageLocationDao" class="com.rave.visiit.dao.PackageLocationDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageLocationService" class="com.rave.visiit.service.PackageLocationServiceImpl">
+	      <beans:property name="packageLocationDao" ref="packageLocationDao"/>
+	</beans:bean>
+	<beans:bean id="featuredpackageDao" class="com.rave.visiit.dao.FeaturedpackageDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="featuredpackageService" class="com.rave.visiit.service.FeaturedpackageServiceImpl">
+	      <beans:property name="featuredpackageDao" ref="featuredpackageDao"/>
+	</beans:bean>
+	<beans:bean id="packageConditionDao" class="com.rave.visiit.dao.PackageConditionDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageConditionService" class="com.rave.visiit.service.PackageConditionServiceImpl">
+	      <beans:property name="packageConditionDao" ref="packageConditionDao"/>
+	</beans:bean>
+	<beans:bean id="masterDao" class="com.rave.visiit.dao.MasterDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="masterService" class="com.rave.visiit.service.MasterServiceImpl">
+	      <beans:property name="masterDao" ref="masterDao"/>
+	</beans:bean>
+	<beans:bean id="travellerDetailDao" class="com.rave.visiit.dao.TravellerDetailDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="travellerDetailService" class="com.rave.visiit.service.TravellerDetailServiceImpl">
+	      <beans:property name="travellerDetailDao" ref="travellerDetailDao"/>
+	</beans:bean>
+	<beans:bean id="paymentTransactionDao" class="com.rave.visiit.dao.PaymentTransactionDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="paymentTransactionService" class="com.rave.visiit.service.PaymentTransactionServiceImpl">
+	      <beans:property name="paymentTransactionDao" ref="paymentTransactionDao"/>
+	</beans:bean>
+	<beans:bean id="moduleDao" class="com.rave.visiit.dao.ModuleDaoImpl">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+    <beans:bean id="moduleService" class="com.rave.visiit.service.ModuleServiceImpl">
+        <beans:property name="moduleDao" ref="moduleDao"></beans:property>
+    </beans:bean>
+	<beans:bean id="customerEnquiryDao" class="com.rave.visiit.dao.CustomerEnquiryDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="customerEnquiryService" class="com.rave.visiit.service.CustomerEnquiryServiceImpl">
+	      <beans:property name="customerEnquiryDao" ref="customerEnquiryDao"/>
+	</beans:bean>
+	<beans:bean id="fileUploadDao" class="com.rave.visiit.dao.FileUploadDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="fileUploadService" class="com.rave.visiit.service.FileUploadServiceImpl">
+	      <beans:property name="fileUploadDao" ref="fileUploadDao"/>
+	</beans:bean>
+	<beans:bean id="packageCategoryDao" class="com.rave.visiit.dao.PackageCategoryDaoImpl">
+	      <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory"/>
+	</beans:bean>
+	<beans:bean id="packageCategoryService" class="com.rave.visiit.service.PackageCategoryServiceImpl">
+	      <beans:property name="packageCategoryDao" ref="packageCategoryDao"/>
+	</beans:bean>
+	<!-- ends -->
+	
+	<context:component-scan base-package="com.rave.visiit" />
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+     
+    <beans:bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <beans:property name="sessionFactory" ref="hibernate3AnnotatedSessionFactory" />
+    </beans:bean>
+	
+</beans:beans>

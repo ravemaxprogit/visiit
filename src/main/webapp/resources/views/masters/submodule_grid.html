@@ -1,0 +1,61 @@
+<form name="stateGrid" action="#" role="form" id="cntForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">Sub Module</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{stateResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{stateResponse.message}}</div>
+		<div class="panel-body">
+			<div class="block">
+				<table class="table table-bordered" id="paneltbl">
+					<thead>
+						<tr>
+							<th class="">Name</th>
+							<th class="">Description</th>
+							<th class=""></th>
+						</tr>
+					</thead>
+					<tbody id="tb_body">
+						<tr>
+							<td>
+								<div class="col-md-12">
+									<input type="text" id="code" name="code" ng-maxlength="2" ng-pattern="/^[a-zA-Z]*$/" data-validator="required" data-valid-method="watch" data-required-error-message="Enter the code"
+										data-ng-model="state.stateCode" placeholder="- Add Code-"
+										class="form-control "> 
+										<input type="hidden" id="id" name="stateId" data-ng-model="state.stateId" />
+								</div>
+							</td>
+							<td>
+								<div class="col-md-12">
+									<input type="text" id="name" name="name"
+									    ng-pattern="/^[a-zA-Z]*$/" data-validator="required" data-valid-method="watch" data-required-error-message="Enter the name"
+										placeholder="- Add Name-" data-ng-model="state.stateName"
+										class="form-control">
+								</div>
+							</td>
+							<td><div class="form-actions text-middle">
+									<input type="button" data-validation-submit="stateGrid" data-ng-click="saveState()" value="  +   " class="btn btn-primary"
+										id="saveBtn">
+								</div></td>
+						</tr>
+						<tr data-ng-show="master.states.Status=='Ok'" id="results"
+							data-ng-repeat="state_data in master.states.states">
+							<td>{{state_data.stateCode}}</td>
+							<td>{{state_data.stateName}}</td>
+							<td>
+								<p>
+									<a data-ng-click="deleteState(state_data.stateId)"><i style="color: red;" class="fa fa-trash"></i></a>
+									&nbsp;&nbsp;&nbsp; <a
+										data-ng-click="editState(state_data.stateId,state_data.stateCode,state_data.stateName,state_data.stateDescription,state_data.stateIsactive)"><i
+										style="color: #808080;" class="icon-pencil2"></i></a>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>

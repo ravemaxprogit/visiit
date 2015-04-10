@@ -1,0 +1,148 @@
+<div class="page-contents">
+	<div ng-show="statistics.Status != 'Ok'" class='sucess_error'>{{statistics.message}}</div>
+	<!-- <div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default" style="border-color:#040c70;border-width:3px;">
+		        <div class="panel-body text-center dashboardGradient"><h4 style="color:#353636;">Package Booked</h4><br /> <h4 style="color:#5E1F5F;">{{statistics.packageBooked}}</h4></div>
+		    </div>
+		</div>
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default" style="border-color:#29b509;border-width:3px;">
+		        <div class="panel-body text-center dashboardGradient"><h4 style="color:#353636;">Trip Completed</h4><br /> <h4 style="color:#5E1F5F;">{{statistics.tripCompleted}}</h4></div>
+		    </div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-4"  >
+			<div class="panel panel-default" style="border-color:#f50808;border-width:3px;">
+		        <div class="panel-body text-center dashboardGradient"><h4 style="color:#353636;">Query Requested</h4><br /> <h4 style="color:#5E1F5F;">{{statistics.quiryRequest}}</h4></div>
+		    </div>
+		</div>
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default"  style="border-color:#0da9ba;border-width:3px;">
+		        <div class="panel-body text-center dashboardGradient"><h4 style="color:#353636;">Query Replied</h4><br /> <h4 style="color:#5E1F5F;">{{statistics.quiryReply}}</h4></div>
+		    </div>
+		</div>
+	</div> -->
+	 <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/package-booked.png" />
+                        </td>
+                        <td style="width:65%;text-align: center;">
+                            <p>Package Booked</p>
+                            <h1>{{statistics.packageBooked}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/trip-complted.png" />
+                        </td>
+                        <td style="width:65%;text-align: center;">
+                            <p>Trip Completed</p>
+                            <h1>{{statistics.tripCompleted}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/trip-requested.png" />
+                        </td>
+                        <td style="width:65%;text-align: center;" >
+                            <p>Query Requested</p>
+                            <h1>{{statistics.quiryRequest}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/trip-replied.png" />
+                        </td>
+                        <td style="width:65%;text-align: center;">
+                            <p>Query Replied</p>
+                            <h1>{{statistics.quiryReply}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+            
+	<div class="row">
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/valid-packages.png" />
+                        </td>
+                        <td style="width:65%;" align="center">
+                            <p>Valid Packages</p>
+                            <h1>{{statistics.validPack}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/pending.png" />
+                        </td>
+                        <td style="width:65%;" align="center">
+                            <p>Pending Packages</p>
+                            <h1>{{statistics.incompletePack}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/category.png" />
+                        </td>
+                        <td style="width:65%;" align="center">
+                            <p>Total categories</p>
+                            <h1>{{statistics.validCat}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <table class="dash-tble">
+                    <tr>
+                        <td style="width:35%;" align="center">
+                            <img src="resources/images/customers.png" />
+                        </td>
+                        <td style="width:65%;" align="center">
+                            <p>Total Customers</p>
+                            <h1>{{statistics.totalCustomers}}</h1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+       </div>
+            
+</div>

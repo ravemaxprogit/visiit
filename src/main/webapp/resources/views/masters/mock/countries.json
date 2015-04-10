@@ -1,0 +1,21 @@
+{  
+   "Status":"Ok",
+   "cntryList":[  
+      {  
+         "countryId":1,
+         "countryCode":"AD",
+         "countryName":"Andorra",
+         "countryDescription":"AD",
+         "countryIsactive":"Y",
+         "countryUpdatedDate":1424242675000
+      },
+      {  
+         "countryId":2,
+         "countryCode":"AE",
+         "countryName":"United Arab Emirates",
+         "countryDescription":"",
+         "countryIsactive":"Y",
+         "countryUpdatedDate":1419848657000
+      }
+   ]
+}

@@ -1,0 +1,144 @@
+<form name="contryGrid" action="#" role="form" id="cntForm"
+	method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">Country</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{countryResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{countryResponse.message}}</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-2">Code</div>
+					<div class="col-md-4">
+						<input type="text" id="code" name="code" 
+							data-ng-model="country.countryCode" placeholder="- Add Code-"
+							class="form-control"
+							data-validator="required,validateAlpha" 
+							maxlength="3" ng-minlength="2" ng-focus="hideeerormsg();"
+							data-required-error-message="Enter the code" ><input type="hidden" id="id" name="countryId" />
+							<span style="color:hsl(0, 100%, 50%);" ng-show="contryGrid.code.$error.minlength">Enter Atleast 2 character</span>
+					</div>
+					<div class="col-md-2">Name</div>
+					<div class="col-md-4">
+						<input type="text" id="name" name="name" placeholder="- Add Name-"
+							data-ng-model="country.countryName" class="form-control" maxlength="50" ng-focus="hideeerormsg();"
+							data-validator="required,validateAlphaSpace"
+							data-valid-method="watch"
+							data-required-error-message="Enter the country name">
+					</div>
+				</div>
+				</div>
+				<div class="row">&nbsp;</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2">Description</div>
+						<div class="col-md-4">
+							<input type="text" id="desc" name="desc"
+								placeholder="- Add Description-" maxlength="150" ng-focus="hideeerormsg();"
+								data-ng-model="country.countryDescription" class="form-control" data-validator="required" data-required-error-message="Enter the description">
+						</div>
+						<div class="col-md-6">Active</div>					
+							<div class="col-md-3">
+							<span ng-click="country.countryIsactiveTrue=!country.countryIsactiveTrue" ng-hide="!country.countryIsactiveTrue">
+								<a href=""><i style="color: #21b384;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span> <span ng-click="country.countryIsactiveTrue=!country.countryIsactiveTrue" ng-hide="country.countryIsactiveTrue">
+								<a href=""><i style="color: #808080;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-2"></div>
+						<div class="col-md-2">
+							<input type="button" data-ng-click="saveCountry(contryGrid)"
+								data-validation-submit="contryGrid" value="Add"
+								class="btn btn-primary" id="saveBtn">
+						</div>
+						<div class="col-md-8"></div>
+					</div>
+				</div>
+
+
+				<!--<div class="block clsGrid">-->
+				<div class="block clsGrid">
+				<!-- <table ng-table="countryTableParams" class="table ng-table-responsive table-bordered">
+            <tr ng-repeat="country_data in $data">
+                <td data-title="'Code'">
+                    {{country_data.countryCode}}
+                </td>
+                <td data-title="'Name'">
+                    {{country_data.countryName}}
+                </td>
+                <td data-title="'Description'">
+                    {{country_data.countryDescription}}
+                </td>
+                <td data-title="'Active'">
+                    {{country_data.countryIsactive}}
+                </td>
+                <td data-title="'Edit'">
+                    <p>
+										<a data-ng-click="deleteCountry(country_data.countryId)"><i
+											style="color: red;" class="fa fa-trash"></i></a>
+										&nbsp;&nbsp;&nbsp; <a
+											data-ng-click="editCountry(country_data.countryId,country_data.countryCode,country_data.countryName,country_data.countryDescription,country_data.countryIsactive)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+									</p>
+                </td>
+            </tr>
+        </table>  -->  
+					<table class="table table-bordered" id="paneltbl">
+						<thead>
+							<tr>
+								<th class="">Code</th>
+								<th class="">Name</th>
+								<th class="">Description</th>
+								<th class="">Active</th>
+								<th style="width: 55px;">Action</th>
+							</tr>
+						</thead>
+						<tbody id="tb_body">
+							<tr data-ng-show="master.countries.Status=='Ok'" id="results"
+								data-ng-repeat="country_data in master.countries.cntryList">
+								<td>{{country_data.countryCode}}</td>
+								<td>{{country_data.countryName}}</td>
+								<td>{{country_data.countryDescription}}</td>
+								<td>{{country_data.activeModel}}</td>
+								<td style="width: 55px;">
+									<p>										
+										<a
+											data-ng-click="editCountry(country_data.countryId,country_data.countryCode,country_data.countryName,country_data.countryDescription,country_data.countryIsactive)"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp; <a data-ng-click="deleteCountry(country_data.countryId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+</form>
+<script>
+	$(document).ready(function() {
+		var tog = 0;
+		$(".isActive").on('click', function() {
+			if (tog % 2 == 0) {
+				$(".isActive").prop('checked', true);
+				$(".isActive").val('Y');
+			} else {
+				$(".isActive").prop('checked', false);
+				$(".isActive").val('N');
+			}
+			tog++;
+		});
+	});
+</script>

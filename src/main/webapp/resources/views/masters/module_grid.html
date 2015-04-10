@@ -1,0 +1,65 @@
+
+<form name="contryGrid" action="#" role="form" id="cntForm" method="post">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> <label id="catId">Module</label>&nbsp;Grid
+			</h6>
+		</div>
+		<div data-ng-show="message.success" class="sucess_message">{{countryResponse.message}}</div>
+		<div data-ng-show="message.error" class="sucess_error">{{countryResponse.message}}</div>
+		<div class="panel-body">
+			<div class="block">
+				<table class="table table-bordered" id="paneltbl">
+					<thead>
+						<tr>
+							<th class="">Name</th>
+							<th class="">Description</th>
+							<th class=""></th>
+						</tr>
+					</thead>
+					<tbody id="tb_body">
+						<tr>
+							<td>
+								<div class="col-md-12">
+									<input type="text" id="code" name="code" maxlength="2"
+										data-ng-model="country.countryCode" placeholder="- Add Name-"
+										class="form-control " data-ng-model="country.countryId" ng-maxlength="2" ng-pattern="/^[a-zA-Z]*$/" data-validator="required" data-valid-method="watch" data-required-error-message="Enter the code" >
+										<span class="error" style="color:red" ng-show="contryGrid.code.$error.pattern">Please enter only alphabet character</span>
+										<input type="hidden" id="id" name="countryId" />
+										
+								</div>
+							</td>
+							<td>
+								<div class="col-md-12">
+									<input type="text" id="name" name="name"
+										placeholder="- Add Description-" data-ng-model="country.countryName"
+										class="form-control" ng-pattern="/^[a-zA-Z]*$/" data-validator="required" data-valid-method="watch" data-required-error-message="Enter the name">
+										<span class="error" style="color:red" ng-show="contryGrid.name.$error.pattern">Please enter only alphabet character</span>
+										
+								</div>
+							</td>
+							<td><div class="form-actions text-middle">
+									<input type="button" data-ng-click="saveCountry()" data-validation-submit="contryGrid"  value="  +   " class="btn btn-primary"
+										id="saveBtn">
+								</div></td>
+						</tr>
+						<tr data-ng-show="master.countries.Status=='Ok'" id="results"
+							data-ng-repeat="country_data in master.countries.cntryList">
+							<td>{{country_data.countryCode}}</td>
+							<td>{{country_data.countryName}}</td>
+							<td>
+								<p>
+									<a data-ng-click="deleteCountry(country_data.countryId)"><i style="color: red;" class="fa fa-trash"></i></a>
+									&nbsp;&nbsp;&nbsp; <a
+										data-ng-click="editCountry(country_data.countryId,country_data.countryCode,country_data.countryName,country_data.countryDescription,country_data.countryIsactive)"><i
+										style="color: #808080;" class="icon-pencil2"></i></a>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>

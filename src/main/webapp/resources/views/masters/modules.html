@@ -1,0 +1,51 @@
+<div class="page-contents">
+			<form action="#" role="form" novalidate id="onChangeFrm" name="onChangeFrm" method="post">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h6 class="panel-title">
+							<i class="icon-pencil3"></i>MODULE & SUB MODULE
+						</h6>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">Module</div>
+								<div class="col-md-8">
+									<!-- <input type="text" name="country" placeholder="- Choose Country -" class="form-control" ng-model="country" required> -->
+									<select data-ng-model="country_id" data-ng-change="changeCountry()" id="module" class="form-control" >
+										<option selected="selected" value="">- Choose Module -</option>
+										<option data-ng-if="master.countries.Status=='Ok'" data-ng-repeat="country_data in master.countries.cntryList" value="{{country_data.countryId}}">{{country_data.countryName}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">Submodule</div>
+								<div class="col-md-8">								
+									<select data-ng-model="state_id" data-ng-change="changeState()"  name="submodule" id="submodule" placeholder="- Choose Submodule -" class="form-control" required>
+										<option selected="selected" data-ng-if="master.states.Status=='Ok' || master.states.message=='There is no State to Display'" value="">- Choose Submodule -</option>
+										<option data-ng-if="master.states.Status=='Ok'" data-ng-repeat="state_data in master.states.states" value="{{state_data.stateId}}">{{state_data.stateName}}</option>
+									</select>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="onChangeId" name="onChangeId"> 
+			</form>
+			<div data-ng-include src="'resources/views/masters/module_grid.html'" data-ng-show="showgrid==1"></div>
+			<div data-ng-include src="'resources/views/masters/submodule_grid.html'" data-ng-show="showgrid==2"></div>
+						
+			<!-- /tasks table -->
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			
+		</div>
+		

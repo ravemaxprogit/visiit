@@ -1,0 +1,168 @@
+<div class="page-contents">
+	<form name="saveEnquiry" role="form" method="POST" novalidate>
+		<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i>ENQUIRY INFORMATION
+			</h6>
+		</div>
+		<div class="row">
+			<div ng-class="{'sucess_error': !data.editEnquirySuccess}">{{data.errorMessage}}</div>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Enquiry Code:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqCode}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="enquiry.enqPackageName">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Package Name:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqPackageName}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="trip.tripcode">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Trip Code:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.tripcode}}</span>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+						<label>Customer Name:</label>
+					</div>
+					<div class="col-md-7">
+						<span class="form-control">{{enquiry.enqCustomerName}}</span>
+					</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="enquiry.enqPackageName">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Trip Date:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.enqTripDate | date:'dd/MM/yyyy'}}</span>			
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="trip.tripcode">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Trip Date:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.travelDate}}</span>			
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row form-group">
+					
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Reply:</label>
+							</div>
+							<div class="col-md-7">
+								<textarea name="enqReplay" placeholder="Reply" maxlength="100" class="form-control" ng-model="enquiry.enqReplay"></textarea>		
+							</div>
+						</div>
+					</div>	
+					<div class="col-md-6" ng-if="enquiry.enqPackageName">
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of Adults:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.noOfAdults}}</span>			
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="trip.tripcode">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Package Name:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{trip.packName}}</span>			
+							</div>
+						</div>
+					</div>	
+									
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Status:</label>
+							</div>
+							<div class="col-md-7">
+								<select data-ng-model="enquiry.enqStatus" class="form-control">			
+									<option  data-ng-selected="enquiry.enqStatus == enq_data.title" data-ng-repeat="enq_data in statusList" value="{{enq_data.title}}">{{enq_data.title}}</option>
+								</select>	
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" ng-if="enquiry.enqPackageName">
+						<div class="row">
+							<div class="col-md-4">
+								<label>No of Children:</label>
+							</div>
+							<div class="col-md-7">
+								<span class="form-control">{{enquiry.noOfChildren}}</span>			
+							</div>
+						</div>
+					</div>
+							
+										
+				</div>
+				
+				<div class="row form-group" ng-if="trip.tripcode">
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-4">
+								<label>Final Trip Amount:</label>
+							</div>
+							<div class="col-md-7">
+								<input type="text" name="finalAmount"  maxlength="25" class="form-control" ng-model="trip.finalAmount" data-validator="required,validateNumber" data-required-error-message="Enter the Final Trip Amount.">
+							</div>
+						</div>
+					</div>		
+										
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+		<div class="form-actions text-right">
+			<input type="submit" data-validation-submit="saveEnquiry" ng-click="enquirySave()" id="submit" name="save" value="Save" class="btn btn-danger">
+			<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+		</div>
+	</form>
+	<br/>
+</div>

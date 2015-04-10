@@ -1,0 +1,63 @@
+<div class="page-contents" acl-module resource-id="Vendor">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> Vendor Grid
+			</h6>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" name="vendor" placeholder="- Search Vendor -"
+						class="form-control" ng-model="v_search" required>
+				</div>
+			</div>
+			<div data-ng-show="message.success" class="sucess_message">{{vendorResponse.message}}</div>
+			<div data-ng-show="message.error" class="sucess_error">{{vendorResponse.message}}</div>
+			<div class="block">
+				<div class="form-actions text-right">
+					<input ng-click="vendorAdd();" ng-disabled="isProcessing" type="button" value="Add"
+						class="btn btn-danger">
+				</div>
+				<div class="clsGrid">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="">Code</th>
+								<th class="">Name</th>
+								<th class="">Email</th>
+								<th class="">Phone</th>
+								<th class="">Active</th>
+								<th class="">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-show="vendorList.Status=='Ok'"
+								data-ng-init="filter_len = 1"
+								data-ng-repeat="vendor_data in vendorList.message | filter:vendor_search">
+								<td>{{vendor_data.viSeqId}}</td>
+								<td>{{vendor_data.viVendorName}}</td>
+								<td>{{vendor_data.viVendorEmail}}</td>
+								<td>{{vendor_data.viContactNo1}}</td>
+								<td>{{vendor_data.activeModel}}</td>
+								<td>
+									<p>
+										
+										<a
+											ng-click="vendorAdd(vendor_data.viSeqId);"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+										&nbsp;&nbsp;&nbsp; 	<a ng-click="deleteVendor(vendor_data.viSeqId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								</td>
+							</tr>
+							<tr data-ng-show="vendorList.Status=='Error'">
+								<td colspan="6">{{vendorList.message}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

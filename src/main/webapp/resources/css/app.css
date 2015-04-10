@@ -1,0 +1,178 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+*, h1, h2, h3, h4,h5,h6,p,span,div{
+font-family: 'Open Sans', sans-serif;
+margin: 0px;
+padding: 0px;
+}
+
+body{
+	/*background: #E5E1D1 url("../img/back.jpg") center center fixed repeat;
+	background-size: 100%;*/
+}
+
+.container{
+	width: 750px;
+	margin:auto;
+	text-align: center;
+	background: #FFF;
+	opacity: 0.95;
+	padding: 40px 10px;
+	border: 1px solid #CCC;
+	box-shadow: 0px 0px 15px #CCC;
+	margin-top: 40px;
+}
+
+h1{
+	color: #C44741;
+}
+
+.loading_div{
+	display: block;
+	margin: 10px 0px;
+}
+
+/* input{
+	padding: 10px;
+	font-size: 22px;
+	margin: 20px 0 0 0;
+	border-radius: 20px;
+	border: 2px solid #C44741;
+	outline: none;
+} */
+
+.item {
+/* width: 400px;
+margin: auto;*/
+text-align: left;
+background-color: gainsboro;
+margin-top: 10px;
+padding: 4px;
+box-shadow: 0px 0px 10px #CCC;
+}
+
+.item.title{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.subtitle{
+	font-size: 14px;
+	color: #000000;
+	margin-top:8px;
+}
+.active{
+background-color:#5E1F5F;
+color:#f2f2f2;
+}
+.validation-invalid{
+	color:red;
+}
+.sucess_error{
+	color:red;
+	padding: 10px 0 0 20px;
+}
+.sucess_error1{
+	color:red;
+	padding: 0px;
+}
+.sucess_message{
+	color:green;
+	padding: 10px 0 0 20px;
+}
+.items{
+ height: 266px;
+    margin-top: -20px;
+    overflow: auto;
+    position: absolute;
+    width: 91%;
+    z-index: 100;}
+.imageuploaddialog
+{
+	width:50%;
+	margin:auto;
+}
+.clsGrid
+{	
+	height:500px;
+	overflow-y:scroll; 
+}
+
+/*************** multi select startrs **************/
+.multiSelect {
+    overflow: auto;
+    padding-bottom: 10px;
+}
+.multiSelect ul {
+  list-style: none;
+}
+.multiSelect .select {
+    margin-right: 20px;
+    float: left;
+}
+.multiSelect .text {
+    clear: both;
+    font-size: 11px;
+}
+.multiSelect label.control-label::after {
+    content: ":";
+}
+.multiSelect label.checkbox {
+    margin-bottom: 0;
+}
+.btn.mover {
+    display: block;
+    margin-top: 25px;
+    vertical-align: top;
+}
+.btn.mover.left {
+    padding: 6px 8px 6px 6px;
+}
+.btn.mover.right {
+    margin-top: 5px;
+    padding: 6px 7px;
+}
+.buttons.stacked .btn.mover {
+    margin: 0 0 10px 0;
+}
+.btn.mover.left i, .btn.mover.right i {
+    margin: 0;
+}
+select[multiple] {
+  height:120px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  width: 315px;
+  padding:3px;
+}
+.pull-left {
+    float: left;
+}
+
+.multiSelect .btn{background-color:#e6e6e6;color:#333333;border-color:#cccccc #cccccc #b3b3b3;border-radius:4px;border-style:solid;}
+/********************* multi select ends ****************/
+.tripDateClass div{width:90px;}
+.packageNameClass div{width:120px;}
+.appStatusClass div{width:120px;}
+.paymentStatusClass div{width:110px;}
+.vouchersClass div{width:120px;}
+.proxied-field-wrap input{font-size:93% !important;}
+.ng-table-counts{display:none !important;}
+.contactMailClass div{width:120px;}
+table.dash-tble {
+    background: none repeat scroll 0 0 #ededed;
+    border-left: 2px solid rgb(255, 0, 0);
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+}
+table.dash-tble td p {
+    font-size: 16px;
+    margin-bottom: -5px;
+    margin-top: 15px;
+}
+table.dash-tble td h1 {
+    color: rgb(133, 6, 115);
+    font-size: 45px;
+    margin-bottom: 5px;
+}

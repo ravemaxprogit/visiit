@@ -1,0 +1,68 @@
+<div class="page-contents" acl-module resource-id="Hotel">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> Hotel Grid
+			</h6>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" name="hotel" placeholder="- Search Hotel -"
+						class="form-control" ng-model="h_search" required>
+				</div>
+			</div>
+			<div data-ng-show="message.success" class="sucess_message">{{hotelResponse.message}}</div>
+			<div data-ng-show="message.error" class="sucess_error">{{hotelResponse.message}}</div>
+			<div class="block">
+				<div class="form-actions text-right">
+					<input ng-click="hotelAdd();" ng-disabled="isProcessing" type="button" value="Add"
+						class="btn btn-danger">
+				</div>
+				<div class="clsGrid">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="">Code</th>
+								<th class="">Hotel Name</th>
+								<th class="">Contact Person</th>
+								<th class="">Phone</th>
+								<th class="">Email</th>
+								<th class="">Hotel Image</th>
+								<th class="">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-show="hotelList.Status=='Ok'"
+								data-ng-init="filter_len = 1"
+								data-ng-repeat="hotel_data in hotelList.hotelList | filter:hotel_search">
+								<td>{{hotel_data.hdCode}}</td>
+								<td>{{hotel_data.hdName}}</td>
+								<td>{{hotel_data.hdFax}}</td>
+								<td>{{hotel_data.hdPhone}}</td>
+								<td>{{hotel_data.hdEmail}}</td>
+								<td data-ng-click="addHotelImage(hotel_data)"><img
+									data-ng-show="!hotel_data.imageUrl"
+									ng-src="resources/images/no-imag.png" width="50" alt="no-image" />
+									<img data-ng-show="hotel_data.imageUrl"
+									ng-src="{{imagePath+hotel_data.imageUrl}}" width="50" /></td>
+								<td>
+									<p>
+									
+										<a ng-click="hotelAdd(hotel_data.hdSeqId);"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+												&nbsp;&nbsp;&nbsp; <a ng-click="deleteHotel(hotel_data.hdSeqId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								</td>
+							</tr>
+							<tr data-ng-show="hotelList.Status=='Error'">
+								<td colspan="7">{{hotelList.message}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

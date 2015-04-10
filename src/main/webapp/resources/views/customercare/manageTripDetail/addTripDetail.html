@@ -1,0 +1,246 @@
+<script type="text/ng-template" id="custom-datepicker.html">
+    <div class="enhanced-datepicker">
+        <div class="proxied-field-wrap">
+			<input type="text" name="hiddentravelDate" data-validator="required"  data-required-error-message="Enter the Trip Date" class="form-control margin-zero" ui-date-format="yy-mm-dd" ng-model="ngModel" ui-date="dateOptions" placeholder="Trip Date"/>
+        </div>
+      </div>
+
+</script>
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <span bind-html-unsafe="match.model.value | typeaheadHighlight:query"></span>
+  </a>
+</script>
+<div class="page-contents">
+	<form name="saveNewTripForm" role="form" method="POST" novalidate>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>ADD NEW TRIP </h6></div>
+            <div class="row">
+				<div data-ng-show="message.error" class="sucess_error">{{editTrip.message}}</div>
+			</div>
+			<div class="row">
+			  <div ng-class="{'sucess_message': newTrip.success, 'sucess_error': !newTrip.success}">{{newTrip.message}}</div>				
+			 </div>
+            <div class="panel-body">
+            <div class="form-group">                          
+            <div class="row">
+             	<div class="col-md-2 "><span class="subtitle" style="margin-bottom: 0px;">Trip Date:</span>
+				    <input type="text" name="travelDate" ng-model="newTrip.travelDate"  custom-datepicker date-options='{"dateFormat":"dd/mm/yy",minDate:0}' >
+                </div>
+                <div class="col-md-3  subtitle">Package Name:                	 
+               	   <input type="text" ng-disabled="selectedPackageId" ng-model="pckgSelected" placeholder="Choose Package Name" typeahead="package as package.value for package in getPckName($viewValue) | filter:{value:$viewValue}" class="form-control" autocomplete="off" typeahead-template-url="customTemplate.html" typeahead-on-select="selectedPckgAutoComplete($item, $model, $label);" typeahead-editable="false">               	   
+                </div>             
+                 <div class="col-md-2  subtitle">Package Amount:
+					 <select name="packageAmount" ng-model="newTrip.selectedPackPriceList" ng-disabled="!selectedPackageId" class="form-control" ng-options="price as price.value for price in packPriceList" ng-change="finalPriceCalc(newTrip.selectedPackPriceList)" data-validator="required"  data-valid-method="watch"></select>
+					 <span class="error" ng-show="saveNewTripForm.packageAmount.$required">Select the Amount</span>
+                </div> 
+                <div class="col-md-2 subtitle">&nbsp;Reset Package:
+                	<!-- <input ng-click="pckgSelected = ''; packPriceList = '';selectedPackageId=false;" type="button" value="Reset Package" class="btn btn-danger form-control" ng-disabled="!selectedPackageId"> -->
+                	<input ng-click="resetPackages();pckgSelected='';" type="button" value="Clear" class="btn btn-danger form-control" ng-disabled="!selectedPackageId">
+                </div>
+             </div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="panel panel-default">
+         <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>PASSENGER DETAILS</h6></div>
+           <div class="panel-body">
+            <div class="row">
+            	<div class="col-md-12 trip-details-from">
+				   <div class="row mrgn-0">
+					<div class="col-md-12">
+						<table style="width: 89%; background: #cecece; margin-bottom: 2%;" cellpadding="0" cellspacing="0">
+							<tbody>
+							<tr>
+								<td style="width: 80%; height: 35px;">
+									<h1 style="margin-left: 25px; text-align: left; background: none; padding: 0px; color: #494949;">Add Persons</h1>
+								</td>
+								<td align="center" style="width: 5%; height: 35px; background: #5c0661;">
+									<a ng-click="addNewChoice()" style="cursor: pointer;"><i class="fa fa-plus-circle"></i></a>
+								</td>
+								<td style="width: 0.5%; height: 35px;" ></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="scrollableAddContact">
+					<div class="row mrgn-0" data-ng-repeat="choice in choices">
+						<div class="col-md-1 pad-form" style="width: 65px;">
+							<label>{{ $index+1 }}</label>
+						</div>
+						<div class="col-md-1 pad-form" style="width: 137px;">
+							<span>Title</span><br> 
+							<select id="Select1" name="title" ng-model="choice['gender']"  data-validator="required"  data-valid-method="watch" data-required-error-message="Select the title">
+								<option selected="selected" value="">- Choose Title -</option>
+								<option ng-repeat="item in titles.salutation">{{ item.value }}</option>
+							</select>
+							<span class="error" ng-show="saveNewTripForm.title.$required">Please select the title</span>
+						</div>
+						<div class="col-md-4 pad-form">
+							<span>First Name</span><br> <input type="text" ng-model="choice['psngrfname']" name="fname" data-validator="required,validateAlphaSpace" maxlength="50" data-required-error-message="Enter the firstname">
+						</div>
+						<div class="col-md-3 pad-form">
+							<span>Last Name</span><br> <input type="text" ng-model="choice['psngrlname']" name="lname" data-validator="required,validateAlphaSpace" maxlength="50" data-required-error-message="Enter the lastname">
+						</div>
+						<div class="col-md-1 pad-form">
+							<span>Age</span><br> <input style="width: 90%;"	type="text" ng-model="choice['age']" name="age" data-validator="required,validateNumber" maxlength="2" data-required-error-message="Enter the age">
+						</div>
+						<div class="col-md-1 pad-form">
+							<span></span><br><div style="cursor:pointer;" ng-click="removeperson($index);"><img src="resources/images/del.png" width="19" style="margin-top: 15px"/></div>
+						</div>
+					  </div>
+			   </div>
+		    </div>
+		  </div>
+		 </div>
+		 </div>
+		 <div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Contact Details </h6></div>
+            <div class="panel-body">
+            <div class="form-group">                          
+	            <div class="row">
+				<div class="col-md-12  form-group">
+				<div class="subtitle"></div>
+	                <div class="col-md-2  subtitle">First Name:</div>
+					<div class="col-md-3">
+					<input type="text" ng-model="newTrip.fname" name="confname" class="form-control" data-validator="required,validateAlphaSpace" maxlength="50" data-required-error-message="Enter the First Name">
+					</div>
+	                <div class="col-md-2  subtitle">Last Name:</div>
+					<div class="col-md-3">
+	                   <input type="text" ng-model="newTrip.lname" class="form-control" name="conlname" data-validator="required,validateAlphaSpace" maxlength="50" data-required-error-message="Enter the Last Name">
+	                </div> 
+	                
+	            </div> 
+	            <div class="col-md-12">
+	                <div class="col-md-2  subtitle">Phone:</div>
+					<div class="col-md-3">
+					<input type="text"	ng-model="newTrip.bkphone" class="form-control" name="conphone" maxlength="20" data-validator="required,validateMobilenumspecial" data-required-error-message="Enter the phone no">
+					</div>
+	                <div class="col-md-2  subtitle">E-Mail:</div>
+					<div class="col-md-3">
+	                   <input type="email" maxlength="50" class="form-control" ng-model="newTrip.bkemail" name="conemail" data-validator="required,validateEmail" data-required-error-message="Enter the email id">
+	                </div> 
+	                
+	            </div>
+	           </div>
+	          </div>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Billing Address </h6></div>
+            <div class="panel-body">
+            <div class="form-group">                          
+	            <div class="row">
+				<div class="col-md-5">
+				  <div class="row form-group">
+	                <div class="col-md-5  subtitle">Address:</div>
+					<div class="col-md-7">
+					<textarea name="address" class="form-control" ng-model="newTrip.address" rows="10" maxlength="100" data-validator="required" style="height: 100px;"	data-required-error-message="Enter the Address"></textarea>
+					</div>
+				   </div>
+	             </div> 
+	            <div class="col-md-5">
+	              <div class="row form-group">
+	                <div class="col-md-4  subtitle">City:</div>
+					<div class="col-md-7">
+					<input type="text" ng-model="newTrip.city" class="form-control" name="city" data-validator="required,validateAlphaSpace" maxlength="30" data-required-error-message="Enter the city name">
+					</div>
+				   </div>
+					<div class="row form-group">
+	                <div class="col-md-4  subtitle">State:</div>
+					<div class="col-md-7">
+					<input type="text" ng-model="newTrip.states" class="form-control" name="state" data-validator="required,validateAlphaSpace" data-required-error-message="Enter the state name">
+	                </div>
+	                </div> 
+	            </div>
+	           </div>
+	           <div class="row">
+		           
+		            <div class="col-md-5">
+	                    <div class="row form-group">
+		                <div class="col-md-5  subtitle">Postal Code:</div>
+						<div class="col-md-7">
+						<input type="text" ng-model="newTrip.postal" class="form-control" name="postalcode" data-validator="required,validateNumber" maxlength="10" data-required-error-message="Enter the postal code">
+						</div>
+						</div>
+						 </div>
+						 <div class="col-md-5">
+	              		 <div class="row form-group">
+		                <div class="col-md-4  subtitle">Country:</div>
+						<div class="col-md-7">
+						<input type="text" ng-model="newTrip.country" class="form-control" name="country" data-validator="required,validateAlphaSpace" maxlength="30" data-required-error-message="Enter the country">
+		                </div>
+		                </div> 
+		            </div>
+		  </div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>APPROVAL DETAIL </h6></div>
+            <div class="panel-body">
+            <div class="form-group">  
+            <div class="row form-group">
+		          <div class="col-md-4">
+	                 <div class="row form-group">
+		               <div class="col-md-6  subtitle">Payment Status:</div>
+					     <div class="col-md-6">
+						   <select data-ng-model="newTrip.paymentStatus" class="form-control">			
+						<option  data-ng-selected="newTrip.paymentStatus == trp_pmtsts.title" data-ng-repeat="trp_pmtsts in paymentList" value="{{trp_pmtsts.title}}">{{trp_pmtsts.title}}</option>
+					</select>
+						</div>
+					   </div>
+					 </div>
+					 <div class="col-md-7">
+	              	  <div class="row form-group">
+		                <div class="col-md-3  subtitle">Comments:</div>
+						<div class="col-md-9">
+							<textarea id="tripComments" name="paymentComments" placeholder="Comments" class="form-control" maxlength="1000" ng-model="newTrip.payementCommands" data-validator="required" data-required-error-message="Enter the Payment Comment"></textarea>
+		                </div>
+		                </div> 
+		            </div>
+		      </div>                     
+	           <div class="row" >
+		          <div class="col-md-4">
+	                 <div class="row form-group">
+		               <div class="col-md-6  subtitle">Approval Status:</div>
+					     <div class="col-md-6">
+						   <select data-ng-model="newTrip.approvedStatus" class="form-control">			
+						      <option  data-ng-selected="newTrip.approvedStatus == trp_apsts.title" data-ng-repeat="trp_apsts in tripApprovalList" value="{{trp_apsts.title}}">{{trp_apsts.title}}</option>
+							</select>
+						</div>
+					   </div>
+					 </div>
+					 <div class="col-md-7">
+	              	  <div class="row form-group">
+		                <div class="col-md-3  subtitle">Comments:</div>
+						<div class="col-md-9">
+							<textarea id="tripComments" name="tripComments" placeholder="Comments" class="form-control" maxlength="1000" ng-model="newTrip.statusCommands"></textarea>
+		                </div>
+		                </div> 
+		            </div>
+		      </div>
+		      <div class="row" >
+		      <div class="col-md-4">
+	                 <div class="row form-group">
+		               <div class="col-md-6  subtitle">Total  Amount:</div>
+					     <div class="col-md-6">
+						   <input type="text" name="price" ng-model="newTrip.finalPckageAmount" placeholder="Payment Amount" class="form-control" data-validator="required" maxlength="10" data-required-error-message="Enter the Total Amount">
+						</div>
+					   </div>
+					 </div>
+               </div>
+		</div>
+		</div>
+		</div>
+		
+	  <div class="form-actions text-right">
+			<input type="submit" data-validation-submit="saveNewTripForm" ng-click="saveNewTripDetail()" id="submit" name="save" value="Save" class="btn btn-danger">
+			<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+		</div>
+	</form>
+	<br/>
+</div>
+

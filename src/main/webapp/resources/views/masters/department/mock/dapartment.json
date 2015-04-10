@@ -1,0 +1,37 @@
+{  
+   "Status":"Ok",
+   "deparmentList":[  
+      {  
+         "deptId":1,
+         "deptCode":"DEP_001",
+         "deptName":"Account",
+         "deptDescription":"Account",
+         "deptIsactive":"Y",
+         "deptUpdatedDate":1424242675000
+      },
+      {  
+         "deptId":2,
+         "deptCode":"DEP_002",
+         "deptName":"Financial",
+         "deptDescription":"Financial",
+         "deptIsactive":"Y",
+         "deptUpdatedDate":1424242675000
+      },
+      {  
+         "deptId":3,
+         "deptCode":"DEP_003",
+         "deptName":"Financial1",
+         "deptDescription":"Financial",
+         "deptIsactive":"Y",
+         "deptUpdatedDate":1424242675000
+      },
+      {  
+         "deptId":4,
+         "deptCode":"DEP_003",
+         "deptName":"Financial2",
+         "deptDescription":"Financial",
+         "deptIsactive":"Y",
+         "deptUpdatedDate":1424242675000
+      }
+   ]
+}

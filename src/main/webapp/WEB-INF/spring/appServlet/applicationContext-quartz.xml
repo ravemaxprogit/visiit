@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <import resource="applicationContext-env-quartz.xml"/>
+    
+   <context:component-scan base-package="com.rave.visiit" />
+
+	<!-- For times when you need more complex processing, passing data to the scheduled job -->
+	<bean name="updatePackage" 	class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.rave.visiit.quartz.PackageUpdationCronJob" />
+		<property name="jobDataMap">
+			<map>
+				<entry key="packageService" value-ref="packageService" />
+				<entry key="packageCostService" value-ref="packageCostService" />
+				<entry key="packageConditionService" value-ref="packageConditionService" />
+				<entry key="packageItineraryService" value-ref="packageItineraryService" />
+				<entry key="packageHotelService" value-ref="packageHotelService" />
+				<entry key="packageInclusionService" value-ref="packageInclusionService" />
+				<entry key="packageExclusionService" value-ref="packageExclusionService" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<bean name="deleteOrphanTripVoucher" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.rave.visiit.quartz.DeleteOrphanTripVoucher" />
+		<property name="jobDataMap">
+			<map>
+				<entry key="packageService" value-ref="packageService" />
+				<entry key="fileUploadService" value-ref="fileUploadService" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<bean name="publishNewsLetter" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.rave.visiit.quartz.PublishNewsLetterCronJob" />
+		<property name="jobDataMap">
+			<map>
+				<entry key="packageService" value-ref="packageService" />
+				<entry key="fileUploadService" value-ref="fileUploadService" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+
+	<!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->
+	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="updatePackage" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="deleteOrphanTripVoucher" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="deleteOrphanTripVoucherTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="publishNewsLetter" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="publishNewsLetterTrigger" />
+			</list>
+		</property>
+	</bean>
+	
+</beans>

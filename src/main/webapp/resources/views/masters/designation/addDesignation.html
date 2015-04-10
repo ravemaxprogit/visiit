@@ -1,0 +1,77 @@
+<div class="page-contents">
+	<form name="saveDesignation" role="form" method="POST" novalidate>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>DESIGNATION INFORMATION
+				</h6>
+			</div>
+			<div class="row">
+				<div ng-class="{'sucess_error': !data.addSuccess}">{{data.message}}</div>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Designation Code:</label>
+						</div>
+						<div class="col-md-4">
+							<span class="form-control" ng-model="designation.dsgCode">{{designation.dsgCode}}</span>
+						</div>
+					</div>
+					
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Name:</label>
+						</div>
+						<div class="col-md-4">
+							<input type="text" name="dsgName" placeholder="Name" maxlength="25" class="form-control" ng-model="designation.dsgName" data-validator="required,validateAlphanumSpace" data-required-error-message="Enter the Name" data-validateAlphanum-error-message="Alpha Numeric letters only allowed.">
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Description:</label>
+						</div>
+						<div class="col-md-4">
+							<textarea name="dsgDescription" placeholder="Description" maxlength="100" class="form-control" ng-model="designation.dsgDescription"></textarea>
+							
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Level:</label>
+						</div>
+						<div class="col-md-4">
+							<input type="text" maxlength="5" name="dsgLevel" placeholder="Level" class="form-control" ng-model="designation.dsgLevel" data-validator="required,validateNumber" data-required-error-message="Enter the Level">
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-md-2">
+							<label>Active:</label>
+						</div>
+						<div class="col-md-4">
+							<!-- <input type="radio"  name="dsgIsActive" class="form-control" ng-model="designation.dsgIsActive" ng-checked="desgActive" ng-click="desgActive = !desgActive; designation.dsgIsActive =desgActive;" style="width:auto;"  > -->
+							<span ng-click="designation.dsgIsActive=!designation.dsgIsActive" ng-hide="!designation.dsgIsActive">
+								<a href=""><i style="color: #21b384;" class="fa fa-check-square rect-check"></i></a>
+							</span> 
+							<span ng-click="designation.dsgIsActive=!designation.dsgIsActive" ng-hide="designation.dsgIsActive">
+								<a href=""><i style="color: #808080;" class="fa fa-check-square rect-check"></i></a>
+							</span> 
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="form-actions text-right">
+			<input type="submit"data-validation-submit="saveDesignation" ng-click="designationSave()" id="submit" name="save" value="Save" class="btn btn-danger">
+			<input type="reset" value="Clear" class="btn btn-default">
+			<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+		</div>
+	</form>
+	<br/>
+</div>
+<script>
+		
+		
+</script>

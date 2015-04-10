@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body style="background:#ccc;">
+    <div style="width: 800px; min-height:250px; padding: 0px 30px 30px 30px; border:0px #5e1f5f solid; margin: auto; background:#fff;">
+        <table style="width:100%;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="height:115px; border-bottom:2px #ccc solid;">
+                    <table style="width:100%;" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" valign="middle" style="width:30%;">
+                                <img src="$IMAGECONTEXT$images/mail/logo1.png" />
+                            </td>
+                            <td align="right" valign="bottom" style="width:70%; height:115px;">
+                                <div><a style="font-size:12px; float:right;  color:#000;" href=""></a></div> <br />
+                                <div>
+                                     
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!--Content Will Be Here-->
+
+            <tr>
+                <td style="min-height:100px;">
+                      
+                    <p style="font-size:14px;">Dear  Team, <br /><br />
+                        We have got a query from <span style="color:#ff6a00; font-size:15px; font-weight:bold;"> $FIRSTNAME$</span> with Reference No <span style="color:#ff6a00; font-size:15px; font-weight:bold;">$ENQUIRY_CODE$</span>. Below is the query and proceed for further action.<br /><br /> 
+Query is:<span style="color:#ff6a00; font-size:15px; font-weight:bold;">$QUERY_MESSAGE$ </span><BR><BR>
+ $TRIP_COMMENTS_START$   <table style="width:100%;">
+ 						<tr>
+                            <td style="width:20%; height:30px;"><span style="color: #000; font-size: 15px; font-weight: normal;">Your trip Code  </span></td>
+                            <td style="width:3%;">:</td>
+                            <td style="width:65%;"><span style="color:#ff6a00; font-size:15px; font-weight:bold;">$TRIPCODE$ </span></td>
+                        </tr>
+                 </table>          $TRIP_COMMENTS_END$ 
+                 
+              $COMMENTS_START$   <table style="width:100%;">
+                        <tr>
+                            <td style="width:20%; height:30px;"><span style="color: #000; font-size: 15px; font-weight: normal;">Package Name  </span></td>
+                            <td style="width:3%;">:</td>
+                            <td style="width:65%;"><span style="color:#ff6a00; font-size:15px; font-weight:bold;">$PACKAGE_NAME$ </span></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:20%; height:30px;"><span style="color: #000; font-size: 15px; font-weight: normal;">Trip Date  </span></td>
+                            <td style="width:3%;">:</td>
+                            <td style="width:65%;"><span style="color:#ff6a00; font-size:15px; font-weight:bold;">$TRAVELDATE$</span></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:20%; height:30px;"><span style="color: #000; font-size: 15px; font-weight: normal;">No of Adulits	 </span></td>
+                            <td style="width:3%;">:</td>
+                            <td style="width:65%;"><span style="color:#ff6a00; font-size:15px; font-weight:bold;">$ADUILTS$</span></td>
+                        </tr>
+                       <tr>
+                            <td style="width:20%; height:30px;"><span style="color: #000; font-size: 15px; font-weight: normal;">No of Children </span></td>
+                            <td style="width:3%;">:</td>
+                            <td style="width:65%;"><span style="color:#ff6a00; font-size:15px; font-weight:bold;">$CHILDREN$</span></td>
+                        </tr>
+                    </table>$COMMENTS_END$ 
+<br /><br /> 
+Query status:<span style="color:#ff6a00; font-size:15px; font-weight:bold;"> $STATUS$</span> </p>
+
+                     <p style="font-size:14px; font-weight:bold;">
+                        Regards <br />
+                        <span style="color:#5e1f5f; font-size:18px;">VISIIT ADMIN TEAM</span>
+                    </p>
+
+                </td>
+            </tr>
+          
+
+                    
+                       
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<div class="page-contents" acl-module resource-id="Designation">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i> Designation Grid
+			</h6>
+		</div>
+		<div class="panel-body">							
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" name="designation" placeholder="- Search Designation -"
+						class="form-control" ng-model="des_search" required>
+				</div>
+			</div>				
+			
+			<div class="row">
+				<div ng-class="{'sucess_message': data.success, 'sucess_error': !data.success}">{{data.message}}</div>				
+			</div>
+			<div class="block">
+				<div class="form-actions text-right">
+					<input ng-click="designationAdd();" ng-disabled="isProcessing" type="button" value="Add"
+						class="btn btn-danger">
+				</div>
+				<div class="clsGrid">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="">Code</th>
+								<th class="">Name</th>
+								<th class="">Description</th>
+								<th class="">Level</th>
+								<th class="">Active</th>
+								<th class="">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-show="designations.Status=='Ok'"
+								data-ng-init="filter_len = 1" 
+								data-ng-repeat="vendor_data in designations.designationList | filter:dsg_search">
+								<td>{{vendor_data.dsgCode}}</td>
+								<td>{{vendor_data.dsgName}}</td>
+								<td>{{vendor_data.dsgDescription}}</td>
+								<td>{{vendor_data.dsgLevel}}</td>
+								<td>{{vendor_data.dsgIsActive | true_false}}</td>
+								<td>
+									<p>
+										
+										 <a
+											ng-click="designationAdd(vendor_data.dsgId);"><i
+											style="color: #808080;" class="icon-pencil2"></i></a>
+											&nbsp;&nbsp;&nbsp;<a ng-click="designationDelete(vendor_data.dsgId)"><i
+											style="color: red;" class="icon-close"></i></a>
+									</p>
+								</td>
+							</tr>
+							<tr data-ng-show="vendorList.Status=='Error'">
+								<td colspan="6">{{designationList.message}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h6 class="panel-title">
+			<i class="icon-pencil3"></i>News Letter
+		</h6>
+	</div>
+	<div class="row">
+		<div ng-class="{'sucess_message': messagedata.uploadsuccess, 'sucess_error': !messagedata.uploadsuccess}">{{messagedata.uploadmessage}}</div>
+	</div>
+	<div class="panel-body">
+	  	<div class="col-md-12">
+			<div class="row form-group">
+				<div class="col-md-12 subtitle">Uploaded FileName  :
+			    	<span  ng-model="filename"><a data-ng-if="filenamelink" ng-href={{filenamelink}}> {{filename}}</a></span>
+			    	<span data-ng-if="!filenamelink"> {{filename}}</span>
+             	</div>
+			</div>
+			<div class="col-md-12">
+				<div class="form-actions text-center">
+					<span>
+						<button type="file" ng-file-select ng-model="myFiles" ng-file-change="fileSelected($files, $event)" ng-multiple="false" accept="" resetOnClick="true" class="btn btn-primary">Upload</button>
+					</span>					
+					<span>
+						<input ng-disabled="!myFiles.length"  type="submit" value="Save" data-ng-click="saveNewsletter()" class="btn btn-danger"> 
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,75 @@
+<!-- Navbar --> 
+<div class="navbar navbar-inverse header-fixed-new" role="navigation">
+    <div class="navbar-header">
+        <a ui-sref="dashboard" class="navbar-brand" href="#"><img src="resources/images/logo.png" alt=""></a>
+        <a class="sidebar-toggle"><i class="icon-paragraph-justify2"></i></a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
+            <span class="sr-only">Toggle navbar</span>
+            <i class="icon-grid3"></i>
+        </button>
+        <button type="button" class="navbar-toggle offcanvas">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="icon-paragraph-justify2"></i>
+        </button>
+    </div>
+    <ul style="border-right: 5px #ffd800 solid; border-left: 5px #ffd800 solid;" class="nav navbar-nav navbar-right collapse" id="navbar-icons">
+       <!-- <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-bell"></i>
+                <span class="label label-default">2</span>
+            </a>
+            <div class="popup dropdown-menu dropdown-menu-right">
+                <div class="popup-header">
+                    <a href="#" class="pull-left"><i class="icon-bell"></i></a>
+                    <span>Reminders</span>
+                    <a href="#" class="pull-right"><i class="icon-paragraph-justify"></i></a>
+                </div>
+                <ul class="activity">
+                    <li>
+                        <i class="icon-cart-checkout text-success"></i>
+                        <div>
+                            Some task waiting <a href="#">Vijayaragavan</a>
+                            <span>14 minutes ago</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon-heart text-danger"></i>
+                        <div>
+                            Some task waiting <a href="#">Some Name</a>
+                            <span>14 minutes ago</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon-checkmark3 text-success"></i>
+                        <div>
+                            Some task waiting <a href="#">Some One Here</a>
+                            <span>14 minutes ago</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon-paragraph-justify2 text-warning"></i>
+                        <div>
+                            Some task waiting <a href="#">Nijam Max</a>
+                            <span>14 minutes ago</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>-->
+
+        <li class="user dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <i style="margin-top: 10px;" class="icon-user4"></i>
+                <span>{{userDetails.firstName}}</span>
+                <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right icons-right">
+                <!--<li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                <li><a href="#"><i class="icon-bubble4"></i> Messages</a></li>
+                <li><a href="#"><i class="icon-cog"></i> Settings</a></li>-->
+                <li><a data-ui-sref="logout"><i class="icon-exit"></i>Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- /navbar -->

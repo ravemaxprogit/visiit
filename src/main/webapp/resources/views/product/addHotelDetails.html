@@ -1,0 +1,539 @@
+<div class="page-contents">
+
+	<!-- Breadcrumbs line 
+            <br/>
+            <div class="breadcrumb-line">
+                <ul class="breadcrumb">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ul>
+            </div>
+            <!-- /breadcrumbs line -->
+
+	<form role="form" name="addHotel" id="hotelFrm" novalidate>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>Hotel Details
+				</h6>
+			</div>
+			<div class="panel-body">
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Hotel code:</div>
+					<div class="col-md-3">
+
+						<input type="text" id="hotelCode" name="hotelCode"
+							placeholder="hotel code" class="form-control"
+							ng-model="hotel.hdCode" readonly="readonly">
+					</div>
+					<div class="col-md-2  subtitle">Email:</div>
+					<div class="col-md-3">
+						<input type="email" id="hotelEmail" name="hotelEmail"
+							placeholder="name@email.com" class="form-control"
+							ng-model="hotel.hdEmail" data-validator="required,validateEmail"
+							maxlength="50"
+							data-required-error-message="Enter the Email Address">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2  subtitle">Name:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelName" name="hotelName"
+							placeholder="hotel name" class="form-control"
+							ng-model="hotel.hdName" data-validator="required" maxlength="50"
+							data-required-error-message="Enter the Hotel Name">
+					</div>
+					<div class="col-md-2  subtitle">Address:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelAddress" name="hotelAddress"
+							placeholder="#no, place" class="form-control" maxlength="100"
+							ng-model="hotel.hdAddress" data-validator="required"
+							data-required-error-message="Enter the Address">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Hotel Type:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelType" name="hotelType"
+							placeholder="hotel type" class="form-control"
+							ng-model="hotel.hdType"
+							data-validator="required,validateAlphaSpace" maxlength="20"
+							data-required-error-message="Enter the Hotel Type">
+					</div>
+					<div class="col-md-2  subtitle">Country:</div>
+					<div class="col-md-3">
+						<!--  <input type="text" id="hotelContry" name="hotelCountry" placeholder="country" class="form-
+
+control" ng-model="hotel.hdCountry" data-validator="required,alpha" data-required-error-message="Enter the Country">-->
+						<select data-ng-model="hotel.hdCountry"
+							data-ng-change="changeCountry()" id="country"
+							class="form-control" data-validator="required"
+							data-valid-method="watch"
+							data-required-error-message="Select your country" name="country">
+							<option selected="selected" value="">- Choose Country -</option>
+							<option
+								data-ng-if="master.countries.Status=='Ok' && country_data.countryIsactive==true"
+								data-ng-selected="hotel.hdCountry == country_data.countryId"
+								data-ng-repeat="country_data in master.countries.cntryList"
+								value="{{country_data.countryId}}">{{country_data.countryName}}</option>
+						</select> <span class="error"
+							ng-show="addHotel.country.$required && addHotel.country.$invalid">Please
+							select country</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Description:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelDesc" name="hotelDesc" maxlength="300"
+							placeholder="hotel description" class="form-control"
+							ng-model="hotel.hdDescription">
+					</div>
+					<div class="col-md-2  subtitle">State:</div>
+					<div class="col-md-3">
+						<!--<input type="text" id="hotelState" name="hotelState" placeholder="state" class="form-control" 
+
+ng-model="hotel.hdState" data-validator="required,alpha" data-required-error-message="Enter the State">  -->
+						<select data-ng-model="hotel.hdState"
+							data-ng-change="changeState()" name="state" id="state"
+							placeholder="- Choose state -" class="form-control"
+							data-validator="required"
+							data-required-error-message="Select your state">
+							<option selected="selected"
+								data-ng-if="master.states.Status=='Ok' || master.states.message=='There is no State 
+
+to Display'"
+								value="">- Choose State -</option>
+							<option
+								data-ng-if="master.states.Status=='Ok'  && state_data.stateIsactive==true"
+								data-ng-selected="hotel.hdState == state_data.stateId"
+								data-ng-repeat="state_data in master.states.states"
+								value="{{state_data.stateId}}">{{state_data.stateName}}</option>
+						</select> <span class="error"
+							ng-show="addHotel.state.$required && addHotel.state.$invalid">Please
+							select state</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Phone:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelPhone" name="hotelPhone"
+							placeholder="phone no" class="form-control" maxlength="20"
+							ng-model="hotel.hdPhone"
+							data-validator="required,validateMobilenumspecial"
+							data-required-error-message="Enter the Phone No">
+					</div>
+					<div class="col-md-2  subtitle">City:</div>
+					<div class="col-md-3">
+						<!--<input type="text" id="hotelCity" name="hotelCity" placeholder="city" class="form-control" ng-
+
+model="hotel.hdCity" data-validator="required,alpha" data-required-error-message="Enter the City">  -->
+						<select data-ng-model="hotel.hdCity" name="city" id="city"
+							placeholder="- Choose state -" class="form-control"
+							data-validator="required"
+							data-required-error-message="Select your city">
+							<option value="" selected="selected"
+								data-ng-if="master.cities.Status=='Ok' || master.cities.message =='There is no State to Display'">-
+								Choose City -</option>
+							<option
+								data-ng-if="master.cities.Status=='Ok' && city_data.cityIsactive==true"
+								data-ng-selected="hotel.hdCity==city_data.cityId"
+								data-ng-repeat="city_data in master.cities.cities"
+								value="{{city_data.cityId}}">{{city_data.cityName}}</option>
+						</select> <span class="error"
+							ng-show="addHotel.city.$required && addHotel.city.$invalid">Please
+							select city</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Fax:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelFax" name="hotelFax"
+							class="form-control" ng-model="hotel.hdFax" maxlength="20"
+							ng-pattern="/^[0-9\s-+()]*$/"> <span class="error"
+							style="color: red" ng-show="addHotel.hotelFax.$error.pattern">Please
+							enter valid fax number</span>
+					</div>
+					<div class="col-md-2  subtitle">Postal Code:</div>
+					<div class="col-md-3">
+						<input type="text" id="hotelPostal" name="hotelPostal"
+							class="form-control" ng-model="hotel.hdPostel" maxlength="10"
+							data-validator="required,validateNumber"
+							data-required-error-message="Enter the Postal code"><!-- <span class="error"
+							style="color: red" ng-show="addHotel.hotelPostal.$error.pattern">Please
+							enter numbers only</span> --> 
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-2  subtitle">Review Code:</div>
+					<div class="col-md-3">
+						<input type="text" id="reviewCode" name="reviewCode"
+							class="form-control" ng-model="hotel.reviewCode" maxlength="30">
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>Hotel Contact Details
+				</h6>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2  subtitle">
+						<i style="color: #1d9d74;" class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;[Contact
+						1]
+					</div>
+					<div class="col-md-3">&nbsp;&nbsp;&nbsp;</div>
+					<div class="col-md-2  subtitle">
+						<i style="color: #1d9d74;" class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;[Contact
+						2]
+					</div>
+					<div class="col-md-3">&nbsp;&nbsp;&nbsp;</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Name:</div>
+					<div class="col-md-3">
+						<input type="text" id="name1" name="contactname1"
+							placeholder="contact person name" class="form-control"
+							ng-model="hotel.hotelContacts.hcContactName1"
+							data-validator="required,validateAlphaSpace"
+							data-required-error-message="Enter the name" maxlength="50"
+							data-alphanumeric-error-message="Enter the Correct Name">
+					</div>
+					<div class="col-md-2  subtitle">Name:</div>
+					<div class="col-md-3">
+						<input type="text" id="name2" name="contactname2"
+							placeholder="contact person name" class="form-control"
+							ng-model="hotel.hotelContacts.hcContactName2" maxlength="50"
+							ng-pattern="/^[a-zA-Z\s]*$/"> <span class="error"
+							style="color: red" ng-show="addHotel.contactname2.$error.pattern">Please
+							enter alphabets only</span>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Phone:</div>
+					<div class="col-md-3">
+						<input type="text" id="phone1" name="contactphone1"
+							placeholder="phone no" class="form-control"
+							ng-model="hotel.hotelContacts.hcPhone1"
+							data-validator="required,validateMobilenumspecial" maxlength="20"
+							required-error-message="Enter the Phone No">
+					</div>
+					<div class="col-md-2  subtitle">Phone:</div>
+					<div class="col-md-3">
+						<input type="text" id="phone2" name="contactphone2"
+							placeholder="phone no" class="form-control" maxlength="20"
+							ng-model="hotel.hotelContacts.hcPhone2"
+							ng-pattern="/^[0-9\s-+()]*$/"> <span class="error"
+							style="color: red"
+							ng-show="addHotel.contactphone2.$error.pattern">Please
+							enter valid mobile number</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Email:</div>
+					<div class="col-md-3">
+						<input type="email" id="email1" name="contactemail1"
+							placeholder="name@email.com" class="form-control"
+							ng-model="hotel.hotelContacts.hcEmail1"
+							data-validator="required,validateEmail" maxlength="50"
+							data-required-error-message="Enter the Email Address">
+					</div>
+					<div class="col-md-2  subtitle">Email:</div>
+					<div class="col-md-3">
+						<input type="email" id="email2" name="contactemail2"
+							placeholder="name@email.com" class="form-control"
+							ng-model="hotel.hotelContacts.hcEmail2" maxlength="50"
+							ng-pattern="/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)*$/">
+						<span class="error" style="color: red"
+							ng-show="addHotel.contactemail2.$error.pattern">Please
+							enter valid email address</span>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2  subtitle">Position:</div>
+					<div class="col-md-3">
+						<input type="text" id="position1" name="contactposition1"
+							placeholder="position" class="form-control"
+							ng-model="hotel.hotelContacts.hcPosition1"
+							data-validator="required,validateAlphanum" maxlength="30"
+							data-required-error-message="Enter the Position">
+					</div>
+					<div class="col-md-2  subtitle">Position:</div>
+					<div class="col-md-3">
+						<input type="text" id="position2" name="contactposition2"
+							placeholder="position" class="form-control"
+							ng-model="hotel.hotelContacts.hcPosition2" maxlength="30"
+							ng-pattern="/^[a-zA-Z0-9]*$/"> <span class="error"
+							style="color: red"
+							ng-show="addHotel.contactposition2.$error.pattern">Please
+							enter alphanumberic characters only</span>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h6 class="panel-title">
+					<i class="icon-pencil3"></i>Features
+				</h6>
+			</div>
+			<div class="panel-body">
+			        <div>	
+					    <input type="number" ng-model="hotelfeaturesCount" max="7" name="hotelfeaturesCount" id="hotelfeaturesCount" style="display:none">
+					    <span class="errorSpan" ng-show="addHotel.hotelfeaturesCount.$error.max">You can select maximum 7 features only.</span>						
+					</div>
+				<div class="row">
+					<div class="col-md-2">Aircondition</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdAirCondition=!hotel.hdAirCondition;hotelfeaturesCount=hotelfeaturesCount-1" ng-show="hotel.hdAirCondition"> <a href=""><img ng-src="{{appIcons.acActive}}" /></a>
+					   </span> 
+					   <span ng-click="hotel.hdAirCondition=!hotel.hdAirCondition;hotelfeaturesCount=hotelfeaturesCount+1" ng-show="!hotel.hdAirCondition"> <a href=""><img ng-src="{{appIcons.acInactive}}" /></a>
+					   </span>
+				   </div>
+					<div class="col-md-2">Airport</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdPickup=!hotel.hdPickup;hotelfeaturesCount=hotelfeaturesCount-1" ng-show="hotel.hdPickup"> <a href=""><img ng-src="{{appIcons.airportActive}}" /></a>
+					   </span> 
+					   <span ng-click="hotel.hdPickup=!hotel.hdPickup;hotelfeaturesCount=hotelfeaturesCount+1" ng-show="!hotel.hdPickup"> <a href=""><img ng-src="{{appIcons.airportInactive}}" /></a>
+					   </span>
+				   </div>
+					<div class="col-md-2">Bar</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdBar=!hotel.hdBar;hotelfeaturesCount=hotelfeaturesCount-1" ng-show="hotel.hdBar"> <a href=""><img ng-src="{{appIcons.barActive}}" /></a>
+						</span> 
+						<span ng-click="hotel.hdBar=!hotel.hdBar;hotelfeaturesCount=hotelfeaturesCount+1" ng-show="!hotel.hdBar"> <a href=""><img ng-src="{{appIcons.barInactive}}" /></a>
+					   </span>
+				   </div>
+					<div class="col-md-2">Business</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdBussinessCenter=!hotel.hdBussinessCenter;hotelfeaturesCount=hotelfeaturesCount-1" ng-show="hotel.hdBussinessCenter"> <a href=""><img ng-src="{{appIcons.businessActive}}" /></a>
+					  </span> 
+					  <span ng-click="hotel.hdBussinessCenter=!hotel.hdBussinessCenter;hotelfeaturesCount=hotelfeaturesCount+1" ng-show="!hotel.hdBussinessCenter"> <a href=""><img ng-src="{{appIcons.businessInactive}}" /></a>
+					 </span>
+				   </div>
+			   </div>
+			   <div class="row">
+					<div class="col-md-2">Carparking</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdParking=!hotel.hdParking;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdParking"> <a href=""><img
+												ng-src="{{appIcons.carActive}}" /></a>
+									</span> <span ng-click="hotel.hdParking=!hotel.hdParking;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdParking"> <a href=""><img
+												ng-src="{{appIcons.carInactive}}" /></a>
+						</span>
+				   </div>
+					<div class="col-md-2">Doctor</div>
+					<div class="col-md-1">
+					   <span
+										ng-click="hotel.hdDoctorOnCall=!hotel.hdDoctorOnCall;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdDoctorOnCall"> <a href=""><img
+												ng-src="{{appIcons.doctorActive}}" /></a>
+									</span> <span ng-click="hotel.hdDoctorOnCall=!hotel.hdDoctorOnCall;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdDoctorOnCall"> <a href=""><img
+												ng-src="{{appIcons.doctorInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Floral</div>
+					<div class="col-md-1">
+					   <span
+										ng-click="hotel.hdFloralRequest=!hotel.hdFloralRequest;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdFloralRequest"> <a href=""><img
+												ng-src="{{appIcons.floralActive}}" /></a>
+									</span> <span ng-click="hotel.hdFloralRequest=!hotel.hdFloralRequest;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdFloralRequest"> <a href=""><img
+												ng-src="{{appIcons.floralInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Food</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdFood=!hotel.hdFood;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdFood"> <a href=""><img
+												ng-src="{{appIcons.foodActive}}" /></a>
+									</span> <span ng-click="hotel.hdFood=!hotel.hdFood;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdFood"> <a href=""><img
+												ng-src="{{appIcons.foodInactive}}" /></a>
+						</span>
+				   </div>
+			   </div>
+			   
+				<div class="row">
+					<div class="col-md-2">Gym</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdGym=!hotel.hdGym;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdGym"> <a href=""><img
+												ng-src="{{appIcons.gymActive}}" /></a>
+									</span> <span ng-click="hotel.hdGym=!hotel.hdGym;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdGym"> <a href=""><img
+												ng-src="{{appIcons.gymInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Heater</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdHeater=!hotel.hdHeater;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdHeater"> <a href=""><img
+												ng-src="{{appIcons.heaterActive}}" /></a>
+									</span> <span ng-click="hotel.hdHeater=!hotel.hdHeater;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdHeater"> <a href=""><img
+												ng-src="{{appIcons.heaterInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Ironing</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdIroning=!hotel.hdIroning;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdIroning"> <a href=""><img
+												ng-src="{{appIcons.ironActive}}" /></a>
+									</span> <span ng-click="hotel.hdIroning=!hotel.hdIroning;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdIroning"> <a href=""><img
+												ng-src="{{appIcons.ironInactive}}" /></a>
+						</span>
+				   </div>
+					<div class="col-md-2">Kids</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdKids=!hotel.hdKids;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdKids"> <a href=""><img
+												ng-src="{{appIcons.kidsActive}}" /></a>
+									</span> <span ng-click="hotel.hdKids=!hotel.hdKids;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdKids"> <a href=""><img
+												ng-src="{{appIcons.kidsInactive}}" /></a>
+									</span>
+				   </div>
+			   </div>
+			   <div class="row">
+					<div class="col-md-2">Laundry</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdlaundry=!hotel.hdlaundry;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdlaundry"> <a href=""><img
+												ng-src="{{appIcons.laundryActive}}" /></a>
+									</span> <span ng-click="hotel.hdlaundry=!hotel.hdlaundry;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdlaundry"> <a href=""><img
+												ng-src="{{appIcons.laundryInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Library</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdLibrary=!hotel.hdLibrary;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdLibrary"> <a href=""><img
+												ng-src="{{appIcons.libraryActive}}" /></a>
+									</span> <span ng-click="hotel.hdLibrary=!hotel.hdLibrary;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdLibrary"> <a href=""><img
+												ng-src="{{appIcons.libraryInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Roomsafe</div>
+					<div class="col-md-1">
+					  <span ng-click="hotel.hdRoomsafe=!hotel.hdRoomsafe;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdRoomsafe"> <a href=""><img
+												ng-src="{{appIcons.roomsafeActive}}" /></a>
+									</span> <span ng-click="hotel.hdRoomsafe=!hotel.hdRoomsafe;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdRoomsafe"> <a href=""><img
+												ng-src="{{appIcons.roomsafeInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">SPA</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdSPA=!hotel.hdSPA;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdSPA"> <a href=""><img
+												ng-src="{{appIcons.spaActive}}" /></a>
+									</span> <span ng-click="hotel.hdSPA=!hotel.hdSPA;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdSPA"> <a href=""><img
+												ng-src="{{appIcons.spaInactive}}" /></a>
+									</span>
+				   </div>
+			   </div>
+			   <div class="row">
+					<div class="col-md-2">Shower</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdShower=!hotel.hdShower;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdShower"> <a href=""><img
+												ng-src="{{appIcons.showerActive}}" /></a>
+									</span> <span ng-click="hotel.hdShower=!hotel.hdShower;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdShower"> <a href=""><img
+												ng-src="{{appIcons.showerInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Swimming pool</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdSwimmingpool=!hotel.hdSwimmingpool;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdSwimmingpool"> <a href=""><img
+												ng-src="{{appIcons.swimmingActive}}" /></a>
+									</span> <span ng-click="hotel.hdSwimmingpool=!hotel.hdSwimmingpool;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdSwimmingpool"> <a href=""><img
+												ng-src="{{appIcons.swimmingInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Travel</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdTravelDesk=!hotel.hdTravelDesk;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdTravelDesk"> <a href=""><img
+												ng-src="{{appIcons.traveldeskActive}}" /></a>
+									</span> <span ng-click="hotel.hdTravelDesk=!hotel.hdTravelDesk;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdTravelDesk"> <a href=""><img
+												ng-src="{{appIcons.traveldeskInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">TV</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdTVDVD=!hotel.hdTVDVD;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdTVDVD"> <a href=""><img
+												ng-src="{{appIcons.tvActive}}" /></a>
+									</span> <span ng-click="hotel.hdTVDVD=!hotel.hdTVDVD;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdTVDVD"> <a href=""><img
+												ng-src="{{appIcons.tvInactive}}" /></a>
+						</span>
+				   </div>
+			   </div>
+			   <div class="row">
+					<div class="col-md-2">Villa</div>
+					<div class="col-md-1">
+					   <span ng-click="hotel.hdVilla=!hotel.hdVilla;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hdVilla"> <a href=""><img
+												ng-src="{{appIcons.villaActive}}" /></a>
+									</span> <span ng-click="hotel.hdVilla=!hotel.hdVilla;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hdVilla"> <a href=""><img
+												ng-src="{{appIcons.villaInactive}}" /></a>
+									</span>
+				   </div>
+					<div class="col-md-2">Yoga</div>
+					<div class="col-md-1">
+					  <span ng-click="hotel.hafHelthclubYoga=!hotel.hafHelthclubYoga;hotelfeaturesCount=hotelfeaturesCount-1"
+										ng-show="hotel.hafHelthclubYoga"> <a href=""><img
+												ng-src="{{appIcons.yogaActive}}" /></a>
+									</span> <span
+										ng-click="hotel.hafHelthclubYoga=!hotel.hafHelthclubYoga;hotelfeaturesCount=hotelfeaturesCount+1"
+										ng-show="!hotel.hafHelthclubYoga"> <a href=""><img
+												ng-src="{{appIcons.yogaInactive}}" /></a>
+									</span>
+				   </div>
+			   </div>
+			</div>
+		</div>
+
+		<br>
+		<div class="form-actions text-right">
+			<input type="submit" value="Save" data-ng-click="saveHotel()"
+				data-validation-submit="addHotel" class="btn btn-danger">
+			<input type="reset" value="Cancel" ng-click="cancel();"
+				class="btn btn-default">
+		</div>
+
+	</form>
+
+</div>

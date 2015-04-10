@@ -1,0 +1,57 @@
+<div class="page-contents">
+	<form role="form" name="addDepartment" id="addDepartment" novalidate>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h6 class="panel-title">
+				<i class="icon-pencil3"></i>Department Details
+			</h6>
+		</div>
+		<div class="row">
+		<div data-ng-show="message.error" class="sucess_error">{{saveDepartmentResponse.message}}</div>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<div class="row form-group">
+				<div class="col-md-2  subtitle">Department Code:</div>
+				<div class="col-md-3">
+					<span class="form-control" ng-model="addDepartments.deptCode">{{addDepartments.deptCode}}</span>
+				</div>
+
+			</div>
+			<div class="row form-group">
+				<div class="col-md-2  subtitle">Name:</div>
+				<div class="col-md-3">
+					<input type="text" id="departmentName" name="departmentName" maxlength="50" placeholder="Department name" class="form-control"	ng-model="addDepartments.deptName" data-validator="required,validateAlphanumSpace" data-required-error-message="Enter the Department name">
+				</div>
+
+			</div>
+			<div class="row form-group">
+				<div class="col-md-2  subtitle">Description:</div>
+				<div class="col-md-3">
+					<textarea id="departmentDesc" name="departmentDesc" placeholder="Description" maxlength="100" class="form-control margin-zero ng-pristine ng-untouched ng-isolate-scope ng-invalid"	ng-model="addDepartments.deptDescription"></textarea>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-md-2  subtitle">Active:</div>
+				<div class="col-md-4">
+					<!-- <input type="radio" name="depIsActive"  class="form-control"  ng-model="addDepartments.deptIsActive" ng-checked="deptActive" ng-click="deptActive = !deptActive; addDepartments.deptIsActive =deptActive;" style="width: auto;" /> -->
+					<span ng-click="addDepartments.deptIsActive=!addDepartments.deptIsActive" ng-hide="!addDepartments.deptIsActive">
+				        <a href=""><i style="color: #21b384;" class="fa fa-check-square rect-check"></i></a>
+				    </span> 
+				    <span ng-click="addDepartments.deptIsActive=!addDepartments.deptIsActive" ng-hide="addDepartments.deptIsActive">
+				        <a href=""><i style="color: #808080;" class="fa fa-check-square rect-check"></i></a>
+				    </span>
+				</div>
+			</div>
+		 </div>
+	   </div>
+	</div>
+	<div class="form-actions text-right">
+		<input type="submit" value="Save" data-ng-click="saveDeparment()" data-validation-submit="addDepartment" class="btn btn-danger">
+		<input type="reset" value="Clear" class="btn btn-default">
+		<input type="reset" value="Cancel" ng-click="cancel();" class="btn btn-primary">
+	</div>
+	<input type="hidden" ng-model="addDepartments.deptId">
+</form>
+
+</div>

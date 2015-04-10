@@ -1,0 +1,173 @@
+<div class="page-contents">
+			<form name="saveVendor" role="form" method="POST" novalidate>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>VENDOR INFORMATION</h6></div>
+                    <div class="panel-body">
+
+                        <div class="form-group">                         
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Name:</label>
+                                    <input type="text" name="viVendorName" placeholder="Name" class="form-control" maxlength="50" ng-model="vendor.viVendorName" data-validator="required,validateAlpha" data-required-error-message="Enter the name">
+                                </div> 
+                                <div class="col-md-4">
+                                    <label>Phone No:</label>
+                                    <input type="text" name="viVendorPhone" placeholder="Mobile no" class="form-control" maxlength="20" ng-model="vendor.viVendorPhone" data-validator="required,validateMobilenumspecial" data-required-error-message="Enter the phone no">
+                                </div>
+                                
+                                 <div class="col-md-4">
+                                    <label>Email address:</label>
+                                    <input type="email" name="viVendorEmail" placeholder="name@email.com" class="form-control" maxlength="50" ng-model="vendor.viVendorEmail" data-validator="required,validateEmail" data-required-error-message="Enter the email address">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label>Address:</label>
+                                    <input type="text" name="viAddress" placeholder="#No, Street Name" class="form-control" maxlength="100" ng-model="vendor.viAddress" data-validator="required" data-required-error-message="Enter the address">
+                                </div>  
+                                <div class="col-md-4">
+                                    <label>Country:</label>
+                                    <select data-ng-model="vendor.viCountry" data-ng-change="changeCountry()" id="country" name="country" class="form-control" data-validator="required"  data-valid-method="watch" data-required-error-message="Select your country" >
+										<option selected="selected" value="">- Choose Country -</option>
+										<option data-ng-if="master.countries.Status=='Ok' && country_data.countryIsactive==true" data-ng-selected="vendor.viCountry == country_data.countryId" data-ng-repeat="country_data in master.countries.cntryList" value="{{country_data.countryId}}">{{country_data.countryName}}</option>
+							   		</select>							   		
+							   		<span class="error" ng-show="saveVendor.country.$required && saveVendor.country.$invalid">Please select country</span>                              
+                                </div>                                    
+                            </div>                            
+                            <div class="row">                               
+                                <div class="col-md-4">
+                                    <label>State:</label>
+                                     <select data-ng-model="vendor.viState" data-ng-change="changeState()"  name="state" id="state" placeholder="- Choose state -" class="form-control" data-validator="required" data-required-error-message="Select your state">
+										<option selected="selected" data-ng-if="master.states.Status=='Ok' || master.states.message=='There is no State to Display'" value="">- Choose State -</option>
+										<option data-ng-if="master.states.Status=='Ok' && state_data.stateIsactive==true" data-ng-selected="vendor.viState == state_data.stateId" data-ng-repeat="state_data in master.states.states" value="{{state_data.stateId}}">{{state_data.stateName}}</option>
+									</select>  
+									<span class="error" ng-show="saveVendor.state.$required && saveVendor.state.$invalid">Please select state</span>                                  
+                                </div>
+ 								<div class="col-md-4">
+                                    <label>City:</label>
+                                     <select data-ng-model="vendor.viCity" name="city" id="city" placeholder="- Choose state -" class="form-control"  data-validator="required" data-required-error-message="Select your city">
+										<option value="" selected="selected" data-ng-if="master.cities.Status=='Ok' || master.cities.message =='There is no State to Display'">- Choose City -</option>
+										<option  data-ng-if="master.cities.Status=='Ok'&& city_data.cityIsactive==true" data-ng-selected="vendor.viCity==city_data.cityId" data-ng-repeat="city_data in master.cities.cities" value="{{city_data.cityId}}">{{city_data.cityName}}</option>
+									</select>
+									<span class="error" ng-show="saveVendor.city.$required && saveVendor.city.$invalid">Please select city</span>
+                                    </div> 
+                                <div class="col-md-4">
+                                    <label>Fax:</label>
+                                    <input type="text" name="viFax" maxlength="20" class="form-control" ng-model="vendor.viFax" ng-pattern="/^[0-9\s-+()]*$/">
+                                    <!-- <span class="error" ng-show="saveVendor.viFax.$required && saveVendor.viFax.$invalid">Please select city</span> -->     
+                                    <span class="error" style="color:red" ng-show="saveVendor.viFax.$error.pattern">Please enter valid fax number</span>                                                                 
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Contact Detail</h6></div>
+                    <div class="panel-body">
+                      <div class="form-group">
+
+                            <div class="row">  
+                                <div class="col-md-4">
+                                    <label>[Person 1] Name:</label>
+                                    <input type="text" name="viContactName1" placeholder="First Name - Last Name" class="form-control" maxlength="50" ng-model="vendor.viContactName1" data-required-error-message="Enter the person 1 name" data-validator="required,validateAlpha" data-required-error-message="Enter the person 1 name">
+                                    
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Contact:</label>
+                                    <input type="text" name="viContactNo1" placeholder="Mobile no" class="form-control" maxlength="20" ng-model="vendor.viContactNo1"  data-validator="required,validateMobilenumspecial" data-required-error-message="Enter the contact mobile no">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Email:</label>
+                                    <input type="email" name="viContactEmail1" placeholder="name@email.com" class="form-control" maxlength="50" ng-model="vendor.viContactEmail1" data-validator="required,validateEmail" data-required-error-message="Enter the email address">
+                                </div>
+                            </div>
+                            
+                            <div class="row">  
+                                <div class="col-md-4">
+                                    <label>[Person 2] Name:</label>
+                                    <input type="text" name="viContactName2" placeholder="First Name - Last Name" class="form-control" maxlength="50" ng-model="vendor.viContactName2" data-validator="required,validateAlpha" data-required-error-message="Enter the person 2 name">
+                                    
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Contact:</label>
+                                    <input type="text" name="viContactNo2" placeholder="Mobile no" class="form-control" maxlength="20" ng-model="vendor.viContactNo2" data-validator="required,validateMobilenumspecial" data-required-error-message="Enter the contact mobile no">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label>Email:</label>
+                                    <input type="email" name="viContactEmail2" placeholder="name@email.com" class="form-control" maxlength="50" ng-model="vendor.viContactEmail2" data-validator="required,validateEmail" data-required-error-message="Enter the email address">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h6 class="panel-title"><i class="icon-pencil3"></i>Additional Detail</h6></div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Vendor Code:</label>
+                                    <span class="form-control" ng-model="vendor.viCode">{{vendor.viCode}}</span>
+                                </div>
+
+                                <div class="col-md-1">
+                                <div id="vendor_active_status" style="display:none">{{(vendor.viIsactiveTrue)?1:0}}</div>
+                                    <label>Active:</label>
+                                    <!-- <input type="radio" id="isActive"
+										data-ng-click="radioVendorActive()"
+										data-ng-checked="vendor.viIsactiveTrue"
+										value=1
+										class="vendorisActive form-control"/> -->
+										<div class="col-md-3">
+										<span ng-click="vendor.viIsactiveTrue=!vendor.viIsactiveTrue" ng-hide="!vendor.viIsactiveTrue">
+								<a href=""><i style="color: #21b384;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span> <span ng-click="vendor.viIsactiveTrue=!vendor.viIsactiveTrue" ng-hide="vendor.viIsactiveTrue">
+								<a href=""><i style="color: #808080;"
+									class="fa fa-check-square rect-check"></i></a>
+							</span>   </div>                                 
+                                </div>
+
+                                   <div class="col-md-7">
+                                    <label>Remark:</label>
+                                    <input type="text" name="viRemark" placeholder="" class="form-control" maxlength="100" ng-model="vendor.viRemark">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                
+                        <div class="form-actions text-right">
+                            <input type="submit" data-validation-submit="saveVendor" ng-click="vendorSave()" id="submit" name="save" value="Save" class="btn btn-danger">
+                            <input type="reset" value="Clear" class="btn btn-default">
+							<input type="reset" value="Cancel" ng-click="cancel()" class="btn btn-primary">
+                        </div>
+            </form><br/>
+           
+           </div>
+        <script>
+		$(".vendorisActive").on('click', function() {
+			var vendortog = $('#vendor_active_status').html();
+			if (vendortog == 1) {
+				$(".vendorisActive").prop('checked', true);
+				$(".vendorisActive").val('y');
+			} else {
+				$(".vendorisActive").prop('checked', false);
+				$(".vendorisActive").val('y');
+			}
+		});	
+</script>

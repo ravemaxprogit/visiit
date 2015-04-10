@@ -1,0 +1,56 @@
+<style type="text/css">
+.bg {
+    background-image:url('resources/images/login-bg.jpg');
+    background-repeat:no-repeat;
+    /*background-size:cover;*/
+    background-position:top center;
+    width:100%;
+}
+.login-headear {
+    width: 306px;
+    height: 77px;
+    background: #e6e6e6;
+    background-image: url('resources/images/login-logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    margin:20px auto;
+}
+</style>
+<div style="width:30%;margin:50px auto;">
+	<div class="login-headear"></div>
+		<form action="#" role="form" novalidate id="onChangeFrm"
+			name="onChangeFrm" method="post">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h6 class="panel-title">
+						<i class="icon-pencil3"></i>Registration
+					</h6>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">Email</div>
+							<div class="col-md-10">
+								<input type="text" name="custEmail" id="custEmail"
+									placeholder="- Email Address -" class="form-control"
+									ng-model="email" required>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-2">
+								&nbsp;
+							</div>
+							<div class="col-md-10">
+								<input type="button" id="change" name="change" value="Change"
+									 class="btn btn-danger" />
+								&nbsp;<span><a ui-sref="login" href="/login">back to Login?</a></span>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="onChangeId" name="onChangeId">
+	</form>
+</div>

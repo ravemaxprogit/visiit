@@ -1,0 +1,71 @@
+<!-- Sidebar -->
+<div class="sidebar left-side-menu-fixed">
+	<div class="sidebar-content">
+		<!-- User dropdown -->
+		<div class="user-menu dropdown">
+			<a style="cursor: default !important;" class="dropdown-toggle"
+				data-toggle="dropdown"> <img
+				src="resources/images/demo/users/bird.png" alt="">
+				<div class="user-info" style="">
+					Visiit
+				</div>
+			</a>
+
+		</div>
+		<!-- Main navigation -->
+		<ul class="navigation" >
+			<li data-ng-class="$state.current.name == 'dashboard'?'active':''">
+				<a ui-sref="dashboard"><span>Dashboard</span> <i
+					class="icon-screen2"></i></a>
+			</li>
+
+			<li acl-module resource-id="Masters"
+				data-ng-class="($state.current.name == 'country'|| $state.current.name == 'department' || $state.current.name == 'designation'|| $state.current.name == 'manageUsers' )?'active':''">
+				<a ui-sref="masters"><span>Masters</span> <i class="icon-file"></i></a>
+				<ul
+					class="submenu" data-ng-style="($state.current.name == 'masters' || $state.current.name == 'country' || $state.current.name == 'department' || $state.current.name == 'designation'|| $state.current.name == 'manageUsers' )?{'display': 'block'}:{'display': 'none'}">
+					<li acl-module resource-id="Country" data-ng-class="($state.current.name == 'country')?'active':''"><a ui-sref="country">Country</a></li>
+					<li acl-module resource-id="Users" data-ng-class="($state.current.name == 'manageUsers')?'active':''"><a ui-sref="manageUsers">Users</a></li>					
+					<li acl-module resource-id="Department" data-ng-class="($state.current.name == 'department')?'active':''"><a ui-sref="department">Department</a></li>
+					<li acl-module resource-id="Designation" data-ng-class="($state.current.name == 'designation')?'active':''"><a ui-sref="designation">Designation</a></li>
+				</ul>
+			</li>
+
+			<li acl-module resource-id="Product"
+				data-ng-class="($state.current.name == 'product' || $state.current.name == 'vendor' || $state.current.name == 'hotel' || $state.current.name == 'package' || $state.current.name == 'package_category' )?'active':''">
+				<a ui-sref="product"><span>Product</span> <i class="icon-bubble6"></i></a>
+				<ul
+					class="submenu" data-ng-style="($state.current.name == 'product' || $state.current.name == 'vendor' || $state.current.name == 'hotel' || $state.current.name == 'package' || $state.current.name == 'package_category' )?{'display': 'block'}:{'display': 'none'}">
+					<li acl-module resource-id="Vendor" data-ng-class="($state.current.name == 'vendor')?'active':''"><a ui-sref="vendor">Vendor</a></li>
+					<li acl-module resource-id="Hotel" data-ng-class="($state.current.name == 'hotel')?'active':''"><a ui-sref="hotel">Hotel</a></li>
+					<li acl-module resource-id="Package" data-ng-class="($state.current.name == 'package')?'active':''"><a ui-sref="package">Package</a></li>
+					<li acl-module resource-id="Package Category" data-ng-class="($state.current.name == 'package_category')?'active':''"><a ui-sref="package_category">Package Category</a></li>
+				</ul>
+			</li>
+
+		
+			<li acl-module resource-id="Customer Care"
+				data-ng-class="($state.current.name == 'support' || $state.current.name == 'enquiry_support' || $state.current.name == 'customer_care' || $state.current.name == 'newsletter')?'active':''">
+				<a ui-sref="support"><span>Customer Care</span> <i class="icon-quill2"></i></a>
+				<ul
+					class="submenu" data-ng-style="($state.current.name == 'support' || $state.current.name == 'enquiry_support' || $state.current.name == 'customer_care'|| $state.current.name == 'newsletter')?{'display': 'block'}:{'display': 'none'}">
+					<li acl-module resource-id="Enquiry Support" data-ng-class="($state.current.name == 'enquiry_support')?'active':''"><a ui-sref="enquiry_support">Enquiry Support</a></li>
+					<li acl-module resource-id="News Letter" data-ng-class="($state.current.name == 'newsletter')?'active':''"><a ui-sref="newsletter">News Letter</a></li>
+				</ul>
+			</li>
+			
+            <li acl-module resource-id="Approval"
+				data-ng-class="($state.current.name == 'approval' || $state.current.name == 'manageTrip_Detail')?'active':''">
+				<a ui-sref="approval"><span>Approval</span> <i class="icon-quill2"></i></a>
+				<ul class="submenu" data-ng-style="($state.current.name == 'approval' ||  $state.current.name == 'manageTrip_Detail' )?{'display': 'block'}:{'display': 'none'}">
+					<li acl-module resource-id="Payment Approval" data-ng-class="($state.current.name == 'manageTrip_Detail')?'active':''"><a ui-sref="manageTrip_Detail">Trip Approval</a></li>
+			   </ul>
+			</li>
+			
+
+		</ul>
+		<!-- /main navigation -->
+
+	</div>
+</div>
+<!-- /sidebar -->
